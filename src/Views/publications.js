@@ -4,8 +4,8 @@ export const publicationsPage = () =>{
             <div class="containerLogo">
                 <img src="./imagenes/kallpaLogo.svg" class="logo">
             </div>
-            <nav class= "navWellcome">
-            <ul>
+            <nav >
+            <ul class = "navPages">
                 <li><a href="#/publicaciones">Publicaciones</a></li>
                 <li><a href="#/mispublicaciones">Mis Publicaciones</a></li>
                 <li><a href="#/crearpublicacion">Crear Publicación</a></li>
@@ -13,14 +13,15 @@ export const publicationsPage = () =>{
             </ul>
             </nav>
         </header>
-        <main class="mainBaground">
-            <div class="bagroundMountain"><h2>Publicaciones</h2>
+        <main class="mainBackgroundContainer">
+            <div>
+                <h2>Publicaciones</h2>
             </div>
-            <div><img src="./imagenes/fondo montaña.svg" alt=""></div>
+            <div class = "mainBackground"></div> 
         </main>
         <footer>
             <div class="contentFooter">
-                <div><img src="./imagenes/logo-solo.png" alt="">
+                <div class = "logoFooter"><img src="./imagenes/logo-solo.png" alt="">
                 </div>
                 <div class="copyright">
                     <p>Contáctenos: e-mail:  usuarios@kallpa.com</p>

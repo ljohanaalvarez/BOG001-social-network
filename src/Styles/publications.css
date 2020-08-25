@@ -1,0 +1,15 @@
+
+.navPages {
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.navPages li a {
+    
+    text-decoration: none;
+    color: aliceblue;
+
+}

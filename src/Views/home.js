@@ -17,32 +17,39 @@ export const createWellcomePage = () =>{
                 </div>
             </div>
             <div  class="containerLogIn">
-                <div><span>Iniciar sesión</span></div>
+                <span>Iniciar sesión</span>
                 <div class = "containerForm">
-                    <form id="formLogin" class= "formLogin">
-                        <label>Correo electrónico <input type="email" id="email-login" required>
+                    <form id="formLogin" class= "form">
+                        <label class = "label">Correo electrónico <input type="email" id="email-login" required>
                         </label>
-                        <label>Contraseña<input type="password" id="password-login" minlength="6" required>
+                        <label class = "label">Contraseña<input type="password" id="password-login" minlength="6" required>
                         </label>
-                        <button type="submit" id="btnLogin">Enviar</button>
+                        <label class = "containerButton">
+                            <button type="submit" id="btnLogin" class = "button">Enviar</button>
+                        </label>
                         <p id = "dont-registry"></p>
                     </form>
                 </div>
-                <div><p><a href="" id= "linkRegistry">Registrarse</a></p></div>
+                <div class = "link"><p><a href="" id= "linkRegistry">Registrarse</a></p></div>
             </div>
-            <div class="containerLogUp" >
-                <h1>Registrarse</h1>
-                <form id="formRegistry">  
-                    <label>Nombre completo<input type="text" id="name-registry" required>       
-                    </label>
-                    <label>Correo electrónico<input type="email" id="email-registry" required>
-                    </label>
-                    <label>Contraseña<input type="password" id="password-registry" minlength="6" required>
-                    </label>
-                    <button type="submit" id=btnRegistry >Enviar</button>
-                    <p id="alreadyRegistry"></p>
-                </form>
-                <div><p><a href="" id= "linkLogin">Iniciar sesión</a></p></div>
+            <div class="containerLogIn" id = "containerLogUp" >
+                <span id = "spanLogUp">Registrarse</span>
+                <div class = "containerFormLogUp">
+                    <form id="formRegistry" class= "form">  
+                        <label class = "label">Nombre completo<input type="text" id="name-registry" required>       
+                        </label>
+                        <label class = "label">Correo electrónico<input type="email" id="email-registry" required>
+                        </label>
+                        <label class = "label">Contraseña<input type="password" id="password-registry" minlength="6" required>
+                        </label>
+                        <label class = "containerButton">
+                            <button type="submit" id=btnRegistry class = "button">Enviar</button>
+                        </label>
+                        <p id="alreadyRegistry"></p>
+                        
+                    </form>
+                </div>
+                <div class = "link"><p><a href="" id= "linkLogin">Iniciar sesión</a></p></div>
             </div>
         </section>
         <footer>
@@ -113,7 +120,7 @@ export const createWellcomePage = () =>{
 });
     const linkRegistry = newDiv.querySelector("#linkRegistry");
     linkRegistry.addEventListener("click", (e) => {e.preventDefault();
-        const containerLogUp = newDiv.querySelector(".containerLogUp");
+        const containerLogUp = newDiv.querySelector("#containerLogUp");
         const containerLogIn = newDiv.querySelector(".containerLogIn");
         containerLogUp.style.display= "block";
         containerLogIn.style.display= "none";
@@ -121,7 +128,7 @@ export const createWellcomePage = () =>{
 
     const linkLogin = newDiv.querySelector("#linkLogin");
     linkLogin.addEventListener("click", (e) => {e.preventDefault();
-        const containerLogUp = newDiv.querySelector(".containerLogUp");
+        const containerLogUp = newDiv.querySelector("#containerLogUp");
         const containerLogIn = newDiv.querySelector(".containerLogIn");
         containerLogUp.style.display= "none";
         containerLogIn.style.display= "block";
