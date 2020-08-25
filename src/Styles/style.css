@@ -1,6 +1,8 @@
 *{  
     margin: 0;
     padding: 0;  
+    font-family: 'Raleway', sans-serif;
+   
 }
 
 section{
@@ -31,7 +33,6 @@ section{
 .containerLogIn{
     display: flex;
     /*display: none;*/
-    text-align: center;
     flex-wrap: wrap;
     width: 18%;
     height: 500px;
@@ -41,40 +42,92 @@ section{
     box-shadow: 10px 10px 4px rgba(64, 107, 94, 0.87);
 }
 
-.containerLogIn div{
-    font-family: 'Raleway', sans-serif;
-    margin: auto;   
+.form{
+    display: flex;
+    flex-flow: column wrap; 
 }
 
-.containerLogIn div span{
-    font-size: 20px;  
+.label{
+    padding-bottom: 35px;
+    margin-left: 10%;
+}
+
+.containerLogIn  span{
+    margin-top: 20%;
+    font-size: 21px;  
     font-weight: bold; 
+    margin-left: 30%;
+    width: 300px;
+    height: 30px;
+   
+}
+
+.containerForm{
+    margin-bottom: 15px;
 }
 
 input{
-    width: 80%;
+    width: 85%;
     height: 30px;
-    margin-top: 40px;
+    
 }
+.link{
 
-.containerLogUp{
     display: flex;
-    display: /*block;*/ none;
-    text-align: center;
-    flex-wrap: wrap;
-    width: 18%;
-    height: 500px;
-    margin-top: 12px;
-    margin-right: 12px ;
-    background: #79CDB2;
-    box-shadow: 10px 10px 4px rgba(64, 107, 94, 0.87);
+    justify-content: center;
+    width: 100%;
 }
 
-.mainBaground{
+.containerButton{
+    display: flex;
+    justify-content: start;
+    margin-left: 28px ;
+    height: 30px;    
+}
+
+.button{
+    width: 80px;
+    height: 30px;
+    color: aliceblue;
+    background: #000000;
+    border-radius: 20px;
+    
+}
+#containerLogUp{
+    display: none;
+    padding-top: 3%;
+    box-sizing: border-box;
+}
+.containerFormLogUp{
+    margin-top: 15%;
+    margin-bottom: 20px; 
+}
+#spanLogUp{
+    margin-bottom: 20px;
+
+}
+
+.mainBackgroundContainer{
+    display: flex;
+    width: 100%;
+
+}
+
+.mainBackground{
     background: url(../imagenes/fondoMontaña.svg);
     background-size: cover;
-    width: 900px;
-    height: 600px;
+    width: 100%;
+    height: 525px;
+    margin-left: 150px;
+
+}
+
+h2{
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 250px;
+    font-size: 22px;
+
 }
 
 footer{
@@ -110,3 +163,4 @@ footer{
     font-family: 'Raleway', sans-serif;
     font-size: 15px;
 }
+

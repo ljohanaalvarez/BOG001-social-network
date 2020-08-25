@@ -25,11 +25,22 @@
     width: 290px;
 }
 
-.navWellcome{
+.navPages{
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     margin-top: 45px;
     width: 100%;
     background-size: 100%;
     height: 30px;
     background-color: black;
+}
+.navPages li a {
+    
+    text-decoration: none;
+    color: aliceblue;
+
 }
 
