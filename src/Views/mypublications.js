@@ -1,3 +1,6 @@
+import { createPublicationsPage } from './createpublications.js';
+import { savePost } from './createpublications.js';
+
 export const myPublicationsPage = () =>{
     const viewMyPlublications = `
         <header class="headerWellcome">
@@ -16,6 +19,8 @@ export const myPublicationsPage = () =>{
         <main class="mainBackgroundContainer">
         <div>
             <h2>Mis Publicaciones</h2>
+        </div>
+        <div id= "post-container">
         </div>
         <div class = "mainBackground"></div> 
     </main>
@@ -43,5 +48,16 @@ export const myPublicationsPage = () =>{
         window.location.href="#/home"
     })
 });
+
+    const postContainer = newDivThree.querySelector("#post-container");
+// importar funcion para pintar en otra view
+    if (savePost.createPost()) {
+        postContainer.innerHTML += `<div>
+        <p>${doc.data().commitForm}</p>
+        </div>`
+    }
+
+    
+
     return newDivThree;
 }

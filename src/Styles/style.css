@@ -32,7 +32,6 @@ section{
 
 .containerLogIn{
     display: flex;
-    /*display: none;*/
     flex-wrap: wrap;
     width: 18%;
     height: 500px;
@@ -42,7 +41,7 @@ section{
     box-shadow: 10px 10px 4px rgba(64, 107, 94, 0.87);
 }
 
-.form{
+.formHome{
     display: flex;
     flex-flow: column wrap; 
 }
@@ -119,6 +118,7 @@ input{
     width: 100%;
     height: 525px;
     margin-left: 150px;
+    position: relative;
 
 }
 

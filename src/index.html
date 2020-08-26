@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./Styles/headerHome.css"/>
   <link rel="stylesheet" href="./Styles/headerpages.css"/>
   <link rel="stylesheet" href="./Styles/publications.css">
+  <link rel="stylesheet" href="./Styles/createpublications.css">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -21,12 +22,12 @@
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
+  
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
      <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
-
+     <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
 <script>
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -42,6 +43,7 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
+  const fs = firebase.firestore();
 </script>
 </body>
 </html>

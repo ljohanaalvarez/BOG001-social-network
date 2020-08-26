@@ -19,7 +19,7 @@ export const createWellcomePage = () =>{
             <div  class="containerLogIn">
                 <span>Iniciar sesión</span>
                 <div class = "containerForm">
-                    <form id="formLogin" class= "form">
+                    <form id="formLogin" class= "formHome">
                         <label class = "label">Correo electrónico <input type="email" id="email-login" required>
                         </label>
                         <label class = "label">Contraseña<input type="password" id="password-login" minlength="6" required>
@@ -35,7 +35,7 @@ export const createWellcomePage = () =>{
             <div class="containerLogIn" id = "containerLogUp" >
                 <span id = "spanLogUp">Registrarse</span>
                 <div class = "containerFormLogUp">
-                    <form id="formRegistry" class= "form">  
+                    <form id="formRegistry" class= "formHome">  
                         <label class = "label">Nombre completo<input type="text" id="name-registry" required>       
                         </label>
                         <label class = "label">Correo electrónico<input type="email" id="email-registry" required>
