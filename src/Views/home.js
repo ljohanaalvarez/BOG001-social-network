@@ -1,4 +1,5 @@
 import { router } from '../FunctionRouter/routers.js';
+import{footer} from './footer.js';
 
 export const createWellcomePage = () =>{
     const wellcome = `
@@ -52,17 +53,7 @@ export const createWellcomePage = () =>{
                 <div class = "link"><p><a href="" id= "linkLogin">Iniciar sesión</a></p></div>
             </div>
         </section>
-        <footer>
-        <div class="contentFooter">
-            <div class="logoFooter"><img src="./imagenes/logo-solo.png" alt="">
-            </div>
-            <div class="copyright">
-                <p>Contáctenos: e-mail:  usuarios@kallpa.com</p>
-                <p>© 2020 - kallpa.com</p> 
-            </div>
-        </div>
-        </footer>
-    `;
+        ${footer}`;
 
     const newDiv = document.createElement('div');
     newDiv.innerHTML = wellcome;
@@ -131,7 +122,7 @@ export const createWellcomePage = () =>{
         const containerLogUp = newDiv.querySelector("#containerLogUp");
         const containerLogIn = newDiv.querySelector(".containerLogIn");
         containerLogUp.style.display= "none";
-        containerLogIn.style.display= "block";
+        containerLogIn.style.display= "flex";
     });
 
     return newDiv;
