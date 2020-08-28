@@ -1,5 +1,4 @@
 import { createPublicationsPage } from './createpublications.js';
-import { savePost } from './createpublications.js';
 
 export const myPublicationsPage = () =>{
     const viewMyPlublications = `
@@ -42,20 +41,20 @@ export const myPublicationsPage = () =>{
     const closeSesion = newDivThree.querySelector(".close-sesion");
     closeSesion.addEventListener("click", (e) => {e.preventDefault();
 
-    auth.signOut()
-    .then( () => { 
-        console.log("sesión cerrada");
-        window.location.href="#/home"
-    })
-});
+        auth.signOut()
+        .then( () => { 
+            console.log("sesión cerrada");
+            window.location.href="#/home"
+        })
+    });
 
-    const postContainer = newDivThree.querySelector("#post-container");
+    /*const postContainer = newDivThree.querySelector("#post-container");
 // importar funcion para pintar en otra view
     if (savePost.createPost()) {
         postContainer.innerHTML += `<div>
         <p>${doc.data().commitForm}</p>
         </div>`
-    }
+    }*/
 
     
 

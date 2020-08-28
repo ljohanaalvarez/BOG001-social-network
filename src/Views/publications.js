@@ -36,11 +36,11 @@ export const publicationsPage = () =>{
     const closeSesion = newDivTwo.querySelector(".close-sesion");
     closeSesion.addEventListener("click", (e) => {e.preventDefault();
 
-    auth.signOut()
-    .then( () => {         
-        console.log("sesión cerrada");
-        window.location.href="#/home"
-    })
-});
+        auth.signOut()
+        .then( () => {         
+            console.log("sesión cerrada");
+            window.location.href="#/home"
+        })
+    });
     return newDivTwo;
 }

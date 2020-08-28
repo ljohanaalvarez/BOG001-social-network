@@ -8,18 +8,20 @@ let root = document.querySelector("#root");
 export const router = (route) => {
   root.innerHTML= '';
   switch(route) {
-    case '#/home': {
-      return root.appendChild(createWellcomePage());
-    }
-    case '#/publicaciones':{
-      return root.appendChild(publicationsPage());
-    }
-    case '#/mispublicaciones':{
-      return root.appendChild(myPublicationsPage());
-    }
-    case '#/crearpublicacion':{
-      return root.appendChild(createPublicationsPage());
-    }
+    case '#/home':
+      root.appendChild(createWellcomePage());
+    break;
+      case '#/publicaciones':
+      root.appendChild(publicationsPage());
+    break;
+    case '#/mispublicaciones':
+      root.appendChild(myPublicationsPage());
+    break;
+    case '#/crearpublicacion':
+      root.appendChild(createPublicationsPage());
+    break;
+    default: 
+      root.appendChild(createWellcomePage());
     
   };
 };

@@ -58,14 +58,14 @@ export const createPublicationsPage = () =>{
     const closeSesion = newDivFour.querySelector(".close-sesion");
     closeSesion.addEventListener("click", (e) => {e.preventDefault();
 
-    auth.signOut()
-    .then( () => { 
-        console.log("sesión cerrada");
-        window.location.href="#/home"
-    })
-});
+        auth.signOut()
+        .then( () => { 
+            console.log("sesión cerrada");
+            window.location.href="#/home"
+        })
+    });
 
-    const postForm = newDivFour.querySelector("#postForm");
+    /*const postForm = newDivFour.querySelector("#postForm");
     
     // exportar funcion a otra view
     export const savePost = {
@@ -94,7 +94,7 @@ export const createPublicationsPage = () =>{
        
         postForm.reset();
         commitForm.focus();
-    })
+    })*/
 
     return newDivFour;n
 }

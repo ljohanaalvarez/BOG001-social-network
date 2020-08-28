@@ -102,22 +102,23 @@ export const createWellcomePage = () =>{
 
     formRegistry.addEventListener("submit", (e) => {e.preventDefault(); 
 
-    const emailRegistry = newDiv.querySelector("#email-registry").value;
-    const passwordRegistry = newDiv.querySelector("#password-registry").value;
-    const alreadyRegistry = newDiv.querySelector("#alreadyRegistry");
+        const emailRegistry = newDiv.querySelector("#email-registry").value;
+        const passwordRegistry = newDiv.querySelector("#password-registry").value;
+        const alreadyRegistry = newDiv.querySelector("#alreadyRegistry");
 
-    console.log(emailRegistry, passwordRegistry);
+        console.log(emailRegistry, passwordRegistry);
 
-    auth.createUserWithEmailAndPassword(emailRegistry, passwordRegistry)
-    .then(userCredential => { 
-        console.log("registrado");
-        window.location.href="#/publicaciones"
-    })
-    .catch (err => {
-        console.log("ya registrado");
-        alreadyRegistry.innerHTML = "Usuario registrado, por favor inicie sesión";
-    })
-});
+        auth.createUserWithEmailAndPassword(emailRegistry, passwordRegistry)
+        .then(userCredential => { 
+            console.log("registrado");
+            window.location.href="#/publicaciones"
+        })
+        .catch (err => {
+            console.log("ya registrado");
+            alreadyRegistry.innerHTML = "Usuario registrado, por favor inicie sesión";
+        })
+    });
+    
     const linkRegistry = newDiv.querySelector("#linkRegistry");
     linkRegistry.addEventListener("click", (e) => {e.preventDefault();
         const containerLogUp = newDiv.querySelector("#containerLogUp");
@@ -131,7 +132,7 @@ export const createWellcomePage = () =>{
         const containerLogUp = newDiv.querySelector("#containerLogUp");
         const containerLogIn = newDiv.querySelector(".containerLogIn");
         containerLogUp.style.display= "none";
-        containerLogIn.style.display= "block";
+        containerLogIn.style.display= "flex";
     });
 
     return newDiv;
