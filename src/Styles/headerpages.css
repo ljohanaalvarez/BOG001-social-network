@@ -5,6 +5,7 @@
 
 .headerWellcome{
     display: flex;
+    position: fixed;
     flex-direction: column;
     align-items: space-evenly;
     width: 100%;
@@ -12,6 +13,7 @@
     background-color: white;
     background-size: cover;
     background-repeat:no-repeat;  
+    top: 0;
 }
 
 .containerLogo{
@@ -43,4 +45,6 @@
     color: aliceblue;
 
 }
+
+
 
