@@ -1,10 +1,11 @@
-import { createPublicationsPage } from './createpublications.js';
 import {footer} from './footer.js';
 import {header} from './headerViews.js';
-import {getPosts} from '../functionsFirebase.js';
+import {deletePost} from '../functionsFirebase.js'; 
+import {onGetPosts} from '../functionsFirebase.js';
+import {editPosts} from '../functionsFirebase.js';
 
 export const publicationsPage = () =>{
-    /*const viewPublications = 
+    const viewPublications = 
     `${header}
         <main class="mainBackgroundContainer">
         <div>
@@ -28,65 +29,55 @@ export const publicationsPage = () =>{
             window.location.href="#/home"
         })
     });
-
-    
-    const postContainer = newDivThree.querySelector("#post-container");
-    
-    
-    
-    return newDivThree;*/
-
-
-    const createEvent  = (eventPost) => { 
-        const event = `
-            <div class = "containerPostFinal"> 
-                <div>
-                    <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
-                </div>
-                <div>
-                    <h3 id="userPost"></h3>
-                </div> 
-                <div>
-                    <span id = "like"></span>
-                </div>
-                <div class = "containerCommentary">
-                    <p id = "commentaryP"></p>
-                </div>
-                <div>
-                    <button type="submit" class = "button btnDelete" data-id = >Borrar</button>
-                    <button type="submit" class = "button btnEdit">Editar</button>
-                </div>
-            </div>` 
-
-            const containerEvent = document.createElement("article");
-            conatinerEvent.innerHTML = event;  
-
-            return containerEvent;
-            
-            
-        } 
-
+    const containerEvent = newDivThree.querySelector("#post-container");
     const printPost = async() => {
-        const totalContainer = document.createElement("section");
+        onGetPosts((querySnapshot => {
+            containerEvent.innerHTML =""
+            querySnapshot.forEach( doc => { 
+                const dataPost = doc.data();
+                dataPost.id = doc.id;
+                
+                containerEvent.innerHTML += `
+                    <div class = "containerPostFinal"> 
+                        <div>
+                            <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
+                        </div>
+                        <div>
+                            <h3 id="userPost"></h3>
+                        </div> 
+                        <div>
+                            <span id = "like"></span>
+                        </div>
+                        <div class = "containerCommentary">
+                            <p id = "commentaryP">${dataPost.commitForm}</p>
+                        </div>
+                        <div>
+                            <button type="submit" class = "button btnDelete" data-id = ${dataPost.id}>Borrar</button>
+                            <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>
+                        </div>
+                    </div>` 
 
-        const querySnapshot = await getPosts()
-        querySnapshot.forEach(doc => { 
-            const dataPost = doc.data();
-            totalContainer.insertAdjacentElement("beforeend", createEvent(event) )
+                const btnDelete = newDivThree.querySelectorAll(".btnDelete");
+                const btnEdit = newDivThree.querySelectorAll(".btnEdit");
+        
+                btnDelete.forEach(btn => {
+                    btn.addEventListener("click", async (e) =>{ 
+                        await deletePost(e.target.dataset.id);
+                    });
+                })
+                //Pendiente funcion editar
+                btnEdit.forEach(btn => {
+                    btn.addEventListener("click", async (e) =>{ 
+                       const doc = await editPosts(e.target.dataset.id);
+                       console.log(doc.data());
+                    });
+
+                })
+            })
             
-            dataPost.id = doc.id;
-        })    
-    }  
-    printPost();    
-    
-   
-    
+        }))
+    }
+    printPost();
+
+    return newDivThree;
 }
-
-
-
-
-
-
-
-

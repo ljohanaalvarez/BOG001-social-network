@@ -1,6 +1,6 @@
-import { publicationsPage } from './publications.js';
 import {footer} from './footer.js'
 import {header} from './headerViews.js'
+import {savePost} from '../functionsFirebase.js'
 
 export const createPublicationsPage = () =>{
     const viewCreatePlublications = 
@@ -35,7 +35,7 @@ export const createPublicationsPage = () =>{
             <div class="containerPublications">     
             </div>                 
         </main>
-        ${footer} `;
+        ${footer}`;
 
         const newDivFour = document.createElement("div");
         newDivFour.innerHTML = viewCreatePlublications;
@@ -49,7 +49,6 @@ export const createPublicationsPage = () =>{
             window.location.href="#/home"
         })
     });
-
         const postForm = newDivFour.querySelector("#postForm");   
         postForm.addEventListener('submit', async (e) => {e.preventDefault();
             const commitForm = postForm['commitForm'];
@@ -58,58 +57,6 @@ export const createPublicationsPage = () =>{
             commitForm.focus();
         })
 
-    
-    
-
-    /*postForm.addEventListener('submit', async (e) => {e.preventDefault();
-        const querySnapshot = await getPosts()
-        querySnapshot.forEach(doc => { 
-            const dataPost = doc.data();
-            dataPost.id = doc.id;
-        
-            const containerUser = newDivFour.querySelector(".containerPublications");
-           
-           containerUser.innerHTML += `
-            <div class = "containerPostFinal"> 
-                <div>
-                    <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
-                </div>
-                <div>
-                    <h3 id="userPost"></h3>
-                </div> 
-                <div>
-                    <span id = "like"></span>
-                </div>
-                <div class = "containerCommentary">
-                    <p id = "commentaryP">${dataPost.commitForm}</p>
-                </div>
-                <div>
-                    <button type="submit" class = "button btnDelete" data-id = ${dataPost.id}>Borrar</button>
-                    <button type="submit" class = "button btnEdit">Editar</button>
-                </div>
-            </div>` 
-        });
-
-        
-        
-        const btnDelete = newDivFour.querySelector(".btnDelete");
-        const btnEdit = newDivFour.querySelector(".btnEdit");
-
-        
-        btnDelete.addEventListener("click", async (e) =>{
-                const idPost = e.target.dataset.id;
-                await console,log (e.target.dataset.id);
-                await console.log(idPost);
-                await deletePost(idPost)
-                
-        })
-    })
-        
-    
-
-    
-    });    */
-     
     return newDivFour;
 }
 
