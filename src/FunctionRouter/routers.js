@@ -18,7 +18,6 @@ export const router = (route) => {
     break;
     default: 
       root.appendChild(createWellcomePage());
-    
   };
 };
 
