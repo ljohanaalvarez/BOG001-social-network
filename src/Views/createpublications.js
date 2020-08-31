@@ -57,61 +57,6 @@ export const createPublicationsPage = () =>{
             commitForm.focus();
         })
 
-<<<<<<< HEAD
-    
-    
-
-    /*postForm.addEventListener('submit', async (e) => {e.preventDefault();
-        const querySnapshot = await getPosts()
-        querySnapshot.forEach(doc => { 
-            const dataPost = doc.data();
-            dataPost.id = doc.id;
-        
-            const containerUser = newDivFour.querySelector(".containerPublications");
-           
-           containerUser.innerHTML += `
-            <div class = "containerPostFinal"> 
-                <div>
-                    <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
-                </div>
-                <div>
-                    <h3 id="userPost"></h3>
-                </div> 
-                <div>
-                    <span id = "like"></span>
-                </div>
-                <div class = "containerCommentary">
-                    <p id = "commentaryP">${dataPost.commitForm}</p>
-                </div>
-                <div>
-                    <button type="submit" class = "button btnDelete" data-id = ${dataPost.id}>Borrar</button>
-                    <button type="submit" class = "button btnEdit">Editar</button>
-                </div>
-            </div>` 
-        });
-
-        
-        
-        const btnDelete = newDivThree.querySelector(".btnDelete");
-        const btnEdit = newDivThree.querySelector(".btnEdit");
-
-        
-        btnDelete.addEventListener("click", async (e) =>{
-                const idPost = e.target.dataset.id;
-                await console,log (e.target.dataset.id);
-                await console.log(idPost);
-                await deletePost(idPost)
-                
-        })
-    })
-        
-    
-
-    
-    });    */
-     
-=======
->>>>>>> 45224d979a4d579398396bef6340aa20b5d2fd35
     return newDivFour;
 }
 
