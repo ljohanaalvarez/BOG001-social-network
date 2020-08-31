@@ -13,40 +13,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div id="root"></div>
   
-    <div id="root"></div>
-  
-  
-  
-  <script type="module" src="./FunctionRouter/main.js"></script>
-  <script type="module" src="./Views/footer.js"></script>
-  <script type="module" src="./Views/headerViews.js"></script>
   <!-- FIREBASE SCRIPTS-->
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
   
-
 <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-     <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAUiUROysOh-iWBhnvYjFJn6qI422YXBVk",
-    authDomain: "social-network-11.firebaseapp.com",
-    databaseURL: "https://social-network-11.firebaseio.com",
-    projectId: "social-network-11",
-    storageBucket: "social-network-11.appspot.com",
-    messagingSenderId: "154111845943",
-    appId: "1:154111845943:web:738e8a1901d3d971f141b2",
-    measurementId: "G-4WGVYGSJG8"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const fs = firebase.firestore();
-</script>
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyAUiUROysOh-iWBhnvYjFJn6qI422YXBVk",
+      authDomain: "social-network-11.firebaseapp.com",
+      databaseURL: "https://social-network-11.firebaseio.com",
+      projectId: "social-network-11",
+      storageBucket: "social-network-11.appspot.com",
+      messagingSenderId: "154111845943",
+      appId: "1:154111845943:web:738e8a1901d3d971f141b2",
+      measurementId: "G-4WGVYGSJG8"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const fs = firebase.firestore();
+  </script>
+  <script type="module" src="./FunctionRouter/main.js"></script>
+  <script type="module" src="./functionsFirebase.js"></script>
+  <script type="module" src="./Views/footer.js"></script>
+  <script type="module" src="./Views/headerViews.js"></script>
 </body>
 </html>

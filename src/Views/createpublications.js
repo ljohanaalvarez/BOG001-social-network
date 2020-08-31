@@ -1,6 +1,6 @@
-import { publicationsPage } from './publications.js';
 import {footer} from './footer.js'
 import {header} from './headerViews.js'
+import {savePost} from '../functionsFirebase.js'
 
 export const createPublicationsPage = () =>{
     const viewCreatePlublications = 
@@ -35,7 +35,7 @@ export const createPublicationsPage = () =>{
             <div class="containerPublications">     
             </div>                 
         </main>
-        ${footer} `;
+        ${footer}`;
 
         const newDivFour = document.createElement("div");
         newDivFour.innerHTML = viewCreatePlublications;
@@ -49,7 +49,6 @@ export const createPublicationsPage = () =>{
             window.location.href="#/home"
         })
     });
-
         const postForm = newDivFour.querySelector("#postForm");   
         postForm.addEventListener('submit', async (e) => {e.preventDefault();
             const commitForm = postForm['commitForm'];
@@ -58,6 +57,7 @@ export const createPublicationsPage = () =>{
             commitForm.focus();
         })
 
+<<<<<<< HEAD
     
     
 
@@ -110,6 +110,8 @@ export const createPublicationsPage = () =>{
     
     });    */
      
+=======
+>>>>>>> 45224d979a4d579398396bef6340aa20b5d2fd35
     return newDivFour;
 }
 
