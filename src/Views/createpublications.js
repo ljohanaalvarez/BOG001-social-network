@@ -92,8 +92,8 @@ export const createPublicationsPage = () =>{
 
         
         
-        const btnDelete = newDivFour.querySelector(".btnDelete");
-        const btnEdit = newDivFour.querySelector(".btnEdit");
+        const btnDelete = newDivThree.querySelector(".btnDelete");
+        const btnEdit = newDivThree.querySelector(".btnEdit");
 
         
         btnDelete.addEventListener("click", async (e) =>{
