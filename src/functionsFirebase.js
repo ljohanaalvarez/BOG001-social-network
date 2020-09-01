@@ -1,6 +1,13 @@
-export const savePost = (commitForm) =>
+export const saveUser = (userName) =>
+fs.collection('users').doc().set({
+    userName    
+});  
+
+export const savePost = (commitForm,userId) =>
     fs.collection('posts').doc().set({
-            commitForm
+            commitForm,
+            userId
+            
     });  
 
 /*export const getPosts = () => fs.collection('posts').get();*/
