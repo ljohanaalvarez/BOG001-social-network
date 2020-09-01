@@ -8,7 +8,7 @@ export const createWellcomePage = () =>{
             </div>
             <nav class= "navHome"></nav>
         </header>
-        <section>
+        <section class = "homePage">
             <div id="containerImage">
                 <div id="textKallpa">
                     <p>Kallpa te da la bienvenida, en ésta red social podrás encontrar 
