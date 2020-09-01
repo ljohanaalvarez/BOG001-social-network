@@ -2,16 +2,14 @@
     margin: 0;
     padding: 0;  
     font-family: 'Raleway', sans-serif;
-   
 }
-section{
+.homePage{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-size: 100%;
     font-size: 16px;
 }
-
 #containerImage{
     position: relative; 
     background: url(../imagenes/glampingFondoDesktop.png);
@@ -19,7 +17,6 @@ section{
     width: 80%;
     height: 525px;
 }
-
 #textKallpa{
     position: absolute;
     top: 85px;
@@ -28,7 +25,6 @@ section{
     font-family: 'Raleway', sans-serif;
     font-size: 20px;
 }
-
 .containerLogIn{
     display: flex;
     flex-wrap: wrap;
@@ -39,17 +35,14 @@ section{
     background: #79CDB2;
     box-shadow: 10px 10px 4px rgba(64, 107, 94, 0.87);
 }
-
 .formHome{
     display: flex;
     flex-flow: column wrap; 
 }
-
 .label{
     padding-bottom: 35px;
     margin-left: 10%;
 }
-
 .containerLogIn  span{
     margin-top: 20%;
     font-size: 21px;  
@@ -57,39 +50,31 @@ section{
     margin-left: 30%;
     width: 300px;
     height: 30px;
-   
 }
-
 .containerForm{
     margin-bottom: 15px;
 }
-
 input{
     width: 85%;
     height: 30px;
-    
 }
 .link{
-
     display: flex;
     justify-content: center;
     width: 100%;
 }
-
 .containerButton{
     display: flex;
     justify-content: start;
     margin-left: 28px ;
     height: 30px;    
 }
-
 .button{
     width: 80px;
     height: 30px;
     color: aliceblue;
     background: #000000;
     border-radius: 20px;
-    
 }
 #containerLogUp{
     display: none;
@@ -102,91 +87,42 @@ input{
 }
 #spanLogUp{
     margin-bottom: 20px;
-
 }
-
 .mainBackgroundContainer{
-    margin-top:11%;
-    margin-bottom: 15%;
-    
-
-}
-
-/*main{
-    top:30%;
-    background-size: 100%;
-    margin: 0; 
-
-}*/
-
-
-/*.mainBackgroundContainer{
-    
-    display: flex;
-    
-    flex-direction: column;
-    background: rgb(216, 214, 200);
-    /*background-size: cover;*/
-    /*width: 100%;
-    height: 100%;*/
-    /*background-size: 100%;*/
-    /*position: relative;*/
-    /*margin: 0; 
-    
-
-}*/
-
-/*.mainBackground{
-    background: url(../imagenes/fondoMontaña.svg);
-    background-size: cover;
+    background-image: url(../imagenes/fondoMontaña.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:100% 700px;
     width: 100%;
-    height: 525px;
-    margin-left: 150px;
-    position: relative;
-
-}*/
-
+}
 h2{
-    margin-top: 5px;
+    margin-top: 170px;
     margin-left: 10px;
     width: 250px;
     font-size: 22px;
-
 }
-
-/*footer{
-    height: 70px;
-    width: 100%;
-    background-size: 100%;
-    position: fixed;
-}*/
-
 .contentFooter{
     display: flex;
     justify-content: center;
     align-items: center;
     background: black;
     height: 70px;
-    width: 100%;
-    
+    width: 100%;  
 }
 footer{    
     position: fixed;
     bottom: 0;
     width: 100%;
 }
-
 .logoFooter{
     width: 35px;
     height: 30px;
     margin-right: 20px;
 }
-
 .logoFooter >img {
     width: 35px;
     height: 30px;
 }
-
 .copyright{
     color: blanchedalmond;
     font-family: 'Raleway', sans-serif;

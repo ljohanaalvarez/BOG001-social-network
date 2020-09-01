@@ -8,32 +8,27 @@ export const createPublicationsPage = () =>{
         <main class="mainBackgroundContainer">
             <div>
                 <h2>Crear Publicaciones</h2>
-            </div>
-                <div class = "mainBackground"> 
-                </div> 
-                    <div class="bigContainer">
-                        <div class="containerPost">
-                            <form id="postForm">
-                                <div class="containerUser">
-                                    <div>
-                                        <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
-                                    </div>
-                                    <div>
-                                        <h3 id="userPost"></h3>
-                                    </div>
-                                </div>         
+                <div class="bigContainer">
+                    <div class="containerPost">
+                        <form id="postForm">
+                            <div class="containerUser">
                                 <div>
-                                    <textarea id="commitForm" cols="40" wrap= hard rows="5" maxlength="240" required placeholder = "Máximo 240 carácteres incluidos espacios"></textarea>
+                                    <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
                                 </div>
-                                <label class = "containerButton2">
-                                    <button type="submit" id="btnPublicar" class = "button">Publicar</button>
-                                </label>
-                            </form>
-                            </div>            
-                        </div>                     
+                                <div>
+                                    <h3 id="userPost"></h3>
+                                </div>
+                            </div>         
+                            <div>
+                                <textarea id="commitForm" cols="40" wrap= hard rows="5" maxlength="240" required placeholder = "Máximo 240 carácteres incluidos espacios"></textarea>
+                            </div>
+                            <label class = "containerButton2">
+                                <button type="submit" id="btnPublicar" class = "button">Publicar</button>
+                            </label>
+                        </form>
                     </div>
-            <div class="containerPublications">     
-            </div>                 
+                </div>                     
+            </div>                
         </main>
         ${footer}`;
 

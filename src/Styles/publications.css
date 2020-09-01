@@ -5,11 +5,41 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    
 }
 .navPages li a {
-    
     text-decoration: none;
-    color: aliceblue;
-
+    color: aliceblue
+}
+/*EStilos publicaciones*/
+#post-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5% ;
+    padding-bottom: 10%;
+}
+.containerPostFinal{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 260px;
+    margin-bottom: 5%;
+    background: #79CDB2;
+    box-shadow: 10px 10px 4px rgba(64, 107, 94, 0.87);
+}
+.containerCommentary{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px; 
+    height: 140px;
+    background-color: antiquewhite;
+    margin-top: 2%;
+    margin-bottom:2%;
+}
+#commentaryP{
+    margin: 2%;
 }
