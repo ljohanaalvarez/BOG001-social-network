@@ -1,6 +1,8 @@
 import {footer} from './footer.js'
 import {header} from './headerViews.js'
 import {savePost} from '../functionsFirebase.js'
+import {userId} from '../functionsFirebase.js'
+
 
 export const createPublicationsPage = () =>{
     const viewCreatePlublications = 
@@ -47,7 +49,7 @@ export const createPublicationsPage = () =>{
         const postForm = newDivFour.querySelector("#postForm");   
         postForm.addEventListener('submit', async (e) => {e.preventDefault();
             const commitForm = postForm['commitForm'];
-            await savePost(commitForm.value);
+            await savePost(commitForm.value , userId);
             postForm.reset();
             commitForm.focus();
         })
@@ -55,7 +57,7 @@ export const createPublicationsPage = () =>{
     return newDivFour;
 }
 
-    
+
      
 
 
