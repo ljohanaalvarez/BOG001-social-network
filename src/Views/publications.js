@@ -1,9 +1,8 @@
 import {footer} from './footer.js';
 import {header} from './headerViews.js';
-import {deletePost} from '../functionsFirebase.js'; 
-import {onGetPosts} from '../functionsFirebase.js';
-import {getPosts} from '../functionsFirebase.js';
-import {upDatePosts} from '../functionsFirebase.js';
+import {deletePost,onGetPosts,getPosts,upDatePosts,/*onGetUsers*/} from '../functionsFirebase.js'; 
+
+
 
 export const publicationsPage = () =>{
     const viewPublications = 
@@ -31,20 +30,35 @@ export const publicationsPage = () =>{
     });
     const containerEvent = newDivThree.querySelector("#post-container");
 
+   
+   /* onGetUsers((querySnapshot =>{
+        console.log(querySnapshot);
+         querySnapshot.forEach( doc2 => {
+            const dataUser = doc2.data();
+            name =  dataUser.userName;
+            console.log(dataUser)
+            console.log(name)
+            return name;
+        })       
+        console.log(name)        
+    }))
+
+   console.log(name);*/
+
     const printPost = async() => {
         onGetPosts((querySnapshot => {
             containerEvent.innerHTML =""
             querySnapshot.forEach( doc => { 
                 const dataPost = doc.data();
                 dataPost.id = doc.id;
-                
+                            
                 containerEvent.innerHTML += `
                     <div class = "containerPostFinal"> 
                         <div>
                             <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
                         </div>
                         <div>
-                            <h3 id="userPost"></h3>
+                            <h3 id="userPost">${dataPost.userId}</h3>
                         </div> 
                         <div>
                             <span id = "like"></span>
@@ -56,16 +70,35 @@ export const publicationsPage = () =>{
                             <button type="submit" class = "button btnDelete" data-id = ${dataPost.id}>Borrar</button>
                             <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>
                         </div>
-                    </div>` 
+                    </div>`   
+                    
+                    
 
                 const btnDelete = newDivThree.querySelectorAll(".btnDelete");
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
+                const userPost = newDivThree.querySelector("#userPost");
+
+                /*onGetUsers((querySnapshot =>{
+                    querySnapshot.forEach( doc2 => {
+                       const dataUser = doc2.data();
+                       let name =  dataUser.userName;
+                       //console.log(dataUser)
+                       console.log(name)
+                       userPost.innerHTML= `
+                       <p>${name}</p>`;
+                   })         
+                }))*/
+
+
+
         
                 btnDelete.forEach(btn => {
                     btn.addEventListener("click", async (e) =>{ 
                         await deletePost(e.target.dataset.id);
                     });
                 })
+
+                
 
                 //Funcion editar
                 btnEdit.forEach(btn => {
@@ -116,4 +149,6 @@ export const publicationsPage = () =>{
 
     return newDivThree;
 }
+
+
 

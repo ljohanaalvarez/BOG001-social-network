@@ -74,7 +74,7 @@ export const createWellcomePage = () =>{
     
     auth.signInWithEmailAndPassword(emailLogin, passwordLogin)
     .then(userCredential =>  { 
-        console.log(userCredential.user.uid);
+        console.log(userCredential);
         //userId = userCredential.user.uid; 
         console.log("logueado");
         window.location.href="#/publicaciones"
@@ -118,9 +118,8 @@ export const createWellcomePage = () =>{
         console.log("yabadabadu");
         
     });
-
     
-    
+        
     const linkRegistry = newDiv.querySelector("#linkRegistry");
     linkRegistry.addEventListener("click", (e) => {e.preventDefault();
         const containerLogUp = newDiv.querySelector("#containerLogUp");
@@ -139,7 +138,13 @@ export const createWellcomePage = () =>{
 
     return newDiv;
 
-};
+};  
+
+
+
+
+    
+    
 
 
 

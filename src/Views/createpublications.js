@@ -44,6 +44,7 @@ export const createPublicationsPage = () =>{
             window.location.href="#/home"
         })
     });
+
         const postForm = newDivFour.querySelector("#postForm");   
         postForm.addEventListener('submit', async (e) => {e.preventDefault();
             const commitForm = postForm['commitForm'];
