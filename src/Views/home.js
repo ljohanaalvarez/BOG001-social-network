@@ -1,6 +1,8 @@
 import { router } from '../FunctionRouter/routers.js';
 import{footer} from './footer.js';
 import {saveUser} from '../functionsFirebase.js'
+import {getUsers} from '../functionsFirebase.js'
+
 
 export const createWellcomePage = () =>{
     const wellcome = `
@@ -74,8 +76,6 @@ export const createWellcomePage = () =>{
     
     auth.signInWithEmailAndPassword(emailLogin, passwordLogin)
     .then(userCredential =>  { 
-        console.log(userCredential.user.uid);
-        //userId = userCredential.user.uid; 
         console.log("logueado");
         window.location.href="#/publicaciones"
     })
@@ -89,7 +89,6 @@ export const createWellcomePage = () =>{
         }
     })
 });
-    
 
 //Registrar usuario    
     
@@ -112,14 +111,14 @@ export const createWellcomePage = () =>{
             console.log("ya registrado");
             alreadyRegistry.innerHTML = "Usuario registrado, por favor inicie sesión";
         })
+
         const userName = formRegistry['name-registry'];
         console.log(userName.value);
         saveUser(userName.value);
-        console.log("yabadabadu");
-        
+        console.log("Se obtiene userName");
     });
 
-    
+    getUsers();
     
     const linkRegistry = newDiv.querySelector("#linkRegistry");
     linkRegistry.addEventListener("click", (e) => {e.preventDefault();
@@ -140,7 +139,3 @@ export const createWellcomePage = () =>{
     return newDiv;
 
 };
-
-
-
-
