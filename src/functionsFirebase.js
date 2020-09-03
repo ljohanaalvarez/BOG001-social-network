@@ -6,24 +6,25 @@ fs.collection('users').doc().set({
 export const savePost = (commitForm,userId) =>
 fs.collection('posts').doc().set({
             commitForm,
-            userId    
+              
 });  
 
-export let userId;
+/*export let userId;
 
 export const getUsers = () => {
     
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged( user=> {
         if (user) {
-            name = user.displayName;
             userId = user.uid; 
-            console.log(userId, name);// User is signed in.
+            console.log(userId);// User is signed in.
         } else {
             console.log("No se asuste, este mensaje es pq esta funcionando")// User is signed in.
             // No user is signed in.
         }
     });
-}
+}*/
+
+
         
 export const onGetPosts = (callback) => fs.collection('posts').onSnapshot(callback);
 

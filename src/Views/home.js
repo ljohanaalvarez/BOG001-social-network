@@ -1,7 +1,7 @@
 import { router } from '../FunctionRouter/routers.js';
 import{footer} from './footer.js';
 import {saveUser} from '../functionsFirebase.js'
-import {getUsers} from '../functionsFirebase.js'
+
 
 
 export const createWellcomePage = () =>{
@@ -115,12 +115,33 @@ export const createWellcomePage = () =>{
         })
 
         const userName = formRegistry['name-registry'];
-        console.log(userName.value);
+        //console.log(userName.value);
         saveUser(userName.value);
         console.log("Se obtiene userName");
+
+        /*const getLocalStorage = () => {
+            if (name){
+                let name = localStorage.getItem("name");
+                console.log(name)
+            }else{
+                console.log('No hay nombre')
+            }
+
+        }
+        getLocalStorage();
+
+        
+        const saveLocalStorage = () => {
+            let name = userName.value;
+            localStorage.setItem("name", name);
+        }
+        saveLocalStorage();*/
+
+
+       
     });
 
-    getUsers();
+   // getUsers();
     
         
     const linkRegistry = newDiv.querySelector("#linkRegistry");
