@@ -2,8 +2,6 @@ import {footer} from './footer.js';
 import {header} from './headerViews.js';
 import {deletePost,onGetPosts,getPosts,upDatePosts} from '../functionsFirebase.js'; 
 
-  
-
 export const publicationsPage = () =>{
     const viewPublications = 
     `${header}       
@@ -19,15 +17,18 @@ export const publicationsPage = () =>{
     const newDivThree = document.createElement('div');
     newDivThree.innerHTML = viewPublications;
 
+    //Cerrar sesión de usuario
+
     const closeSesion = newDivThree.querySelector(".close-sesion");
-    closeSesion.addEventListener("click", (e) => {e.preventDefault();
+    closeSesion.addEventListener("click", (e) => {
+        e.preventDefault();
 
         auth.signOut()
         .then( () => { 
-            console.log("sesión cerrada");
             window.location.href="#/home"
         })
     });
+
     const containerEvent = newDivThree.querySelector("#post-container");
 
     const printPost = async() => {
@@ -59,9 +60,8 @@ export const publicationsPage = () =>{
                     
                 const btnDelete = newDivThree.querySelectorAll(".btnDelete");
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
-                const userPost = newDivThree.querySelector("#userPost");
 
-            
+                 //Funcion borrar
 
                 btnDelete.forEach(btn => {
                     btn.addEventListener("click", async (e) =>{ 
@@ -70,6 +70,7 @@ export const publicationsPage = () =>{
                 })
 
                 //Funcion editar
+
                 btnEdit.forEach(btn => {
                     btn.addEventListener("click", async (e) =>{ 
                        const doc = await getPosts(e.target.dataset.id);
@@ -105,15 +106,14 @@ export const publicationsPage = () =>{
                             await upDatePosts( id, {commitForm: commitForm.value });
                             containerEdit.innerHTML ='';
                         }) 
-
                     });                   
                 })
-            })
-            
+            })            
         }))
     }
-    printPost();
 
+    printPost();
+    
     return newDivThree;
 }
 

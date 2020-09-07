@@ -36,17 +36,24 @@ export const createPublicationsPage = () =>{
         const newDivFour = document.createElement("div");
         newDivFour.innerHTML = viewCreatePlublications;
 
-        const closeSesion = newDivFour.querySelector(".close-sesion");
-        closeSesion.addEventListener("click", (e) => {e.preventDefault();
+        //Cerrar sesión de usuario
 
-        auth.signOut()
-        .then( () => { 
-            console.log("sesión cerrada");
-            window.location.href="#/home"
-        })
-    });
+        const closeSesion = newDivFour.querySelector(".close-sesion");
+        closeSesion.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            auth.signOut()
+            .then( () => { 
+                console.log("sesión cerrada");
+                window.location.href="#/home"
+            })
+        });
+
+        //Enviar info del formulario de crear publicación y se crea la collección de posts con sus respectivos documentos(cada post)
+
         const postForm = newDivFour.querySelector("#postForm");   
-        postForm.addEventListener('submit', async (e) => {e.preventDefault();
+        postForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
             const commitForm = postForm['commitForm'];
             console.log(userId, name);
             await savePost(commitForm.value, userId, name);
