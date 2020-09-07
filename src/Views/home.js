@@ -1,6 +1,6 @@
 import { router } from '../FunctionRouter/routers.js';
 import{footer} from './footer.js';
-import {saveUser} from '../functionsFirebase.js'
+import {saveUser, getUsers} from '../functionsFirebase.js'
 
 
 
@@ -77,10 +77,12 @@ export const createWellcomePage = () =>{
     auth.signInWithEmailAndPassword(emailLogin, passwordLogin)
     .then(userCredential =>  { 
         console.log(userCredential);
-        //userId = userCredential.user.uid; 
         console.log("logueado");
+        getUsers();    
         window.location.href="#/publicaciones"
+        
     })
+    
     .catch (err => {
         console.log(err);
         if (err.code === "auth/user-not-found"){
@@ -90,6 +92,8 @@ export const createWellcomePage = () =>{
             dontRegistry.innerHTML = "Contraseña incorrecta";
         }
     })
+   
+
 });
 
 //Registrar usuario    
@@ -101,23 +105,36 @@ export const createWellcomePage = () =>{
         const emailRegistry = newDiv.querySelector("#email-registry").value;
         const passwordRegistry = newDiv.querySelector("#password-registry").value;
         const alreadyRegistry = newDiv.querySelector("#alreadyRegistry");
+        const userName = formRegistry['name-registry'];
 
         console.log(emailRegistry, passwordRegistry);
 
+
         auth.createUserWithEmailAndPassword(emailRegistry, passwordRegistry)
-        .then(userCredential => { 
-            console.log("registrado");
-            window.location.href="#/publicaciones"
+        .then((userCredential) => { 
+            userCredential.user.updateProfile({
+                displayName: userName.value,            
+              })
+              
+              .then(() => {               
+                console.log("registrado")
+                
+                window.location.href ='#/publicaciones';
+                getUsers();
+                
+            })                 
         })
         .catch (err => {
             console.log("ya registrado");
-            alreadyRegistry.innerHTML = "Usuario registrado, por favor inicie sesión";
+            alreadyRegistry.innerHTML = "Ya estas registrado, ahora puedes iniciar sesión";
         })
-
-        const userName = formRegistry['name-registry'];
-        //console.log(userName.value);
+       
         saveUser(userName.value);
-        console.log("Se obtiene userName");
+        //console.log("Se obtiene userName");
+
+        
+
+       
 
         /*const getLocalStorage = () => {
             if (name){
@@ -141,7 +158,8 @@ export const createWellcomePage = () =>{
        
     });
 
-   // getUsers();
+  
+   //console.log(usersRef());
     
         
     const linkRegistry = newDiv.querySelector("#linkRegistry");

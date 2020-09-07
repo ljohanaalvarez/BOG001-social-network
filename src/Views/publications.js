@@ -43,7 +43,7 @@ export const publicationsPage = () =>{
                             <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
                         </div>
                         <div>
-                            <h3 id="userPost"></h3>
+                            <h3 id="userPost">${dataPost.name}</h3>
                         </div> 
                         <div>
                             <span id = "like"></span>
@@ -60,6 +60,8 @@ export const publicationsPage = () =>{
                 const btnDelete = newDivThree.querySelectorAll(".btnDelete");
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
                 const userPost = newDivThree.querySelector("#userPost");
+
+            
 
                 btnDelete.forEach(btn => {
                     btn.addEventListener("click", async (e) =>{ 
@@ -102,10 +104,9 @@ export const publicationsPage = () =>{
                         postForm.addEventListener('submit', async (e) => {e.preventDefault();
                             await upDatePosts( id, {commitForm: commitForm.value });
                             containerEdit.innerHTML ='';
-                        })        
+                        }) 
 
-                    });
-
+                    });                   
                 })
             })
             
