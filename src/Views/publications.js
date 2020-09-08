@@ -53,38 +53,38 @@ export const publicationsPage = () =>{
                         <div class = "containerCommentary">
                             <p id = "commentaryP">${dataPost.commitForm}</p>
                         </div>
-                        <div class="myPost">
-                            <button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
-                            <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>
+                        <div class="myBtnPost">
+                        
+                        AQUI
+                        
                         </div>
                     </div>`  
                     
               
                 const btnDelete = newDivThree.querySelectorAll(".btnDelete");
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
-            
-                const conditionalUser = ()=>{                    
-                    if(userId === dataPost.userId){
-                        ///console.log(userId)
-                        //console.log(dataPost.userId)   
-                        console.log('son iguales  se mostrarán los botones') 
-                        
-                        for(let i=0; i < btnDelete.length; i++) {
-                            btnDelete[i].style.display = "flex";
-                        }   
-                        for(let j=0; j < btnEdit.length; j++) {
-                            btnEdit[j].style.display = "flex";
-                        }    
-                        
-    
-                    }
-                    /*if(userId !=dataPost.userId){
-                        console.log('son diferentes, NO se pueden ver los botones');
-                        }  */  
-                    
+                const myBtnPost = newDivThree.getElementsByClassName("myBtnPost");
+
+                for(let i=0; i < myBtnPost.length; i++){
+                    myBtnPost[i].addEventListener('click', conditionalUser);
                 }
-                conditionalUser();
-                
+                           
+                function conditionalUser(){                 
+                    
+                    if(userId === dataPost.userId){
+                        myBtnPost.innerHTML=''
+                        myBtnPost.innerHTML+=
+                        `<button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
+                        <button type="submit" class = "button btnEdit " data-id = ${dataPost.id}>Editar</button>`
+ 
+                            console.log('son iguales  se mostrarán los botones') 
+                                                       
+                        }else{
+                            console.log('son direfentes, no tiene permiso') 
+                            console.log(dataPost.userId, userId) 
+                            myBtnPost.innerHTML=''
+                        }
+                }
 
                  //Funcion borrar
 
