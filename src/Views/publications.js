@@ -1,9 +1,6 @@
 import {footer} from './footer.js';
 import {header} from './headerViews.js';
-import {deletePost} from '../functionsFirebase.js'; 
-import {onGetPosts} from '../functionsFirebase.js';
-import {getPosts} from '../functionsFirebase.js';
-import {upDatePosts} from '../functionsFirebase.js';
+import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFirebase.js'; 
 
 export const publicationsPage = () =>{
     const viewPublications = 
@@ -20,15 +17,18 @@ export const publicationsPage = () =>{
     const newDivThree = document.createElement('div');
     newDivThree.innerHTML = viewPublications;
 
+    //Cerrar sesión de usuario
+
     const closeSesion = newDivThree.querySelector(".close-sesion");
-    closeSesion.addEventListener("click", (e) => {e.preventDefault();
+    closeSesion.addEventListener("click", (e) => {
+        e.preventDefault();
 
         auth.signOut()
         .then( () => { 
-            console.log("sesión cerrada");
             window.location.href="#/home"
         })
     });
+
     const containerEvent = newDivThree.querySelector("#post-container");
 
     const printPost = async() => {
@@ -37,14 +37,15 @@ export const publicationsPage = () =>{
             querySnapshot.forEach( doc => { 
                 const dataPost = doc.data();
                 dataPost.id = doc.id;
-                
+                            
                 containerEvent.innerHTML += `
                     <div class = "containerPostFinal"> 
                         <div>
                             <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
                         </div>
                         <div>
-                            <h3 id="userPost"></h3>
+                            <h3 id="userPost">${dataPost.name}
+                            ${dataPost.userId}</h3>
                         </div> 
                         <div>
                             <span id = "like"></span>
@@ -52,15 +53,41 @@ export const publicationsPage = () =>{
                         <div class = "containerCommentary">
                             <p id = "commentaryP">${dataPost.commitForm}</p>
                         </div>
-                        <div>
-                            <button type="submit" class = "button btnDelete" data-id = ${dataPost.id}>Borrar</button>
+                        <div class="myPost">
+                            <button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
                             <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>
                         </div>
-                    </div>` 
-
+                    </div>`  
+                    
+              
                 const btnDelete = newDivThree.querySelectorAll(".btnDelete");
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
-        
+            
+                const conditionalUser = ()=>{                    
+                    if(userId === dataPost.userId){
+                        ///console.log(userId)
+                        //console.log(dataPost.userId)   
+                        console.log('son iguales  se mostrarán los botones') 
+                        
+                        for(let i=0; i < btnDelete.length; i++) {
+                            btnDelete[i].style.display = "flex";
+                        }   
+                        for(let j=0; j < btnEdit.length; j++) {
+                            btnEdit[j].style.display = "flex";
+                        }    
+                        
+    
+                    }
+                    /*if(userId !=dataPost.userId){
+                        console.log('son diferentes, NO se pueden ver los botones');
+                        }  */  
+                    
+                }
+                conditionalUser();
+                
+
+                 //Funcion borrar
+
                 btnDelete.forEach(btn => {
                     btn.addEventListener("click", async (e) =>{ 
                         await deletePost(e.target.dataset.id);
@@ -68,10 +95,10 @@ export const publicationsPage = () =>{
                 })
 
                 //Funcion editar
+
                 btnEdit.forEach(btn => {
                     btn.addEventListener("click", async (e) =>{ 
                        const doc = await getPosts(e.target.dataset.id);
-                       console.log(e.target.dataset.id);
                        let id = e.target.dataset.id;
 
                        const containerEdit = newDivThree.querySelector("#containerEdit");
@@ -103,17 +130,17 @@ export const publicationsPage = () =>{
                         postForm.addEventListener('submit', async (e) => {e.preventDefault();
                             await upDatePosts( id, {commitForm: commitForm.value });
                             containerEdit.innerHTML ='';
-                        })        
-
-                    });
-
+                        }) 
+                    });                   
                 })
-            })
-            
+            })            
         }))
     }
-    printPost();
 
+    printPost();
+    
     return newDivThree;
 }
+
+
 

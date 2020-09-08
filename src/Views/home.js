@@ -1,8 +1,6 @@
 import { router } from '../FunctionRouter/routers.js';
 import{footer} from './footer.js';
-import {saveUser} from '../functionsFirebase.js'
-import {getUsers} from '../functionsFirebase.js'
-
+import {saveUser, getUsers} from '../functionsFirebase.js'
 
 export const createWellcomePage = () =>{
     const wellcome = `
@@ -64,62 +62,68 @@ export const createWellcomePage = () =>{
     // Loguear usuario
 
     const formLogin = newDiv.querySelector("#formLogin");
-    
-    
-    formLogin.addEventListener("submit", (e) => {e.preventDefault(); 
 
-    const emailLogin = newDiv.querySelector("#email-login").value;
-    const passwordLogin = newDiv.querySelector("#password-login").value;
-    const dontRegistry = newDiv.querySelector("#dont-registry");
+    formLogin.addEventListener("submit", (e) => {
+        e.preventDefault(); 
+        const emailLogin = newDiv.querySelector("#email-login").value;
+        const passwordLogin = newDiv.querySelector("#password-login").value;
+        const dontRegistry = newDiv.querySelector("#dont-registry");
 
-    console.log(emailLogin, passwordLogin);
-    
-    auth.signInWithEmailAndPassword(emailLogin, passwordLogin)
-    .then(userCredential =>  { 
-        console.log("logueado");
-        window.location.href="#/publicaciones"
-    })
-    .catch (err => {
-        console.log(err);
-        if (err.code === "auth/user-not-found"){
-            dontRegistry.innerHTML = "Usuario no registrado, por favor regístrese";
-        }
-        if(err.code === "auth/wrong-password"){
-            dontRegistry.innerHTML = "Contraseña incorrecta";
-        }
-    })
-});
+        //función para loguerar usuario con correo y contraseña
+        
+        auth.signInWithEmailAndPassword(emailLogin, passwordLogin)
+        .then(userCredential =>  { 
+            console.log(userCredential);
+        //se invoca getUsers para identificar sesión de usuario abierta, esta función getUsers
+        // está en functionFirebase y ayuda a capturar los valores de las variables name y userId.
+            getUsers();    
+            window.location.href="#/publicaciones" 
+        })
+        //Capturar errores que se puedan presentar en el LogIn
+        .catch (err => {
+            console.log(err);
+            if (err.code === "auth/user-not-found"){
+                dontRegistry.innerHTML = "Usuario no registrado, por favor regístrese";
+            }
+            if(err.code === "auth/wrong-password"){
+                dontRegistry.innerHTML = "Contraseña incorrecta";
+            }
+        })
+    });
 
 //Registrar usuario    
     
     const formRegistry = newDiv.querySelector("#formRegistry");
 
-    formRegistry.addEventListener("submit", (e) => {e.preventDefault(); 
-
+    formRegistry.addEventListener("submit", (e) => {
+        e.preventDefault(); 
         const emailRegistry = newDiv.querySelector("#email-registry").value;
         const passwordRegistry = newDiv.querySelector("#password-registry").value;
         const alreadyRegistry = newDiv.querySelector("#alreadyRegistry");
+        const userName = formRegistry['name-registry'];
 
-        console.log(emailRegistry, passwordRegistry);
+         //función para crear usuario con correo y contraseña
 
         auth.createUserWithEmailAndPassword(emailRegistry, passwordRegistry)
-        .then(userCredential => { 
-            console.log("registrado");
-            window.location.href="#/publicaciones"
+        .then((userCredential) => { 
+            userCredential.user.updateProfile({
+                displayName: userName.value,            
+              })              
+              .then(() => {               
+                console.log("registrado")
+                window.location.href ='#/publicaciones';
+                getUsers();
+            })                 
         })
         .catch (err => {
             console.log("ya registrado");
-            alreadyRegistry.innerHTML = "Usuario registrado, por favor inicie sesión";
+            alreadyRegistry.innerHTML = "Ya estas registrado, ahora puedes iniciar sesión";
         })
 
-        const userName = formRegistry['name-registry'];
-        console.log(userName.value);
-        saveUser(userName.value);
-        console.log("Se obtiene userName");
+        // Crear colección de usuarios y documentos correspondiente a esta collección(cada usuario)      
+        saveUser(userName.value);     
     });
-
-    getUsers();
-    
+           
     const linkRegistry = newDiv.querySelector("#linkRegistry");
     linkRegistry.addEventListener("click", (e) => {e.preventDefault();
         const containerLogUp = newDiv.querySelector("#containerLogUp");
@@ -138,4 +142,14 @@ export const createWellcomePage = () =>{
 
     return newDiv;
 
-};
+};  
+
+
+
+
+    
+    
+
+
+
+

@@ -43,3 +43,9 @@
 #commentaryP{
     margin: 2%;
 }
+.btnDelete{
+   display: none;
+}
+.btnEdit{
+    display: none;
+}
