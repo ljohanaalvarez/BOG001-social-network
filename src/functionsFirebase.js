@@ -8,7 +8,8 @@ export const getUsers = () => {
         if (user) {
             // User is signed in.
             console.log(user);
-            userId = user.uid    
+            userId = user.uid;
+            console.log(userId);
             name = user.displayName;                     
         } else { 
             // No user is signed in.

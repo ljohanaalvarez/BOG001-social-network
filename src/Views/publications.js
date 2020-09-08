@@ -1,6 +1,6 @@
 import {footer} from './footer.js';
 import {header} from './headerViews.js';
-import {deletePost,onGetPosts,getPosts,upDatePosts} from '../functionsFirebase.js'; 
+import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFirebase.js'; 
 
 export const publicationsPage = () =>{
     const viewPublications = 
@@ -44,7 +44,8 @@ export const publicationsPage = () =>{
                             <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
                         </div>
                         <div>
-                            <h3 id="userPost">${dataPost.name}</h3>
+                            <h3 id="userPost">${dataPost.name}
+                            ${dataPost.userId}</h3>
                         </div> 
                         <div>
                             <span id = "like"></span>
@@ -52,14 +53,38 @@ export const publicationsPage = () =>{
                         <div class = "containerCommentary">
                             <p id = "commentaryP">${dataPost.commitForm}</p>
                         </div>
-                        <div>
-                            <button type="submit" class = "button btnDelete" data-id = ${dataPost.id}>Borrar</button>
+                        <div class="myPost">
+                            <button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
                             <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>
                         </div>
-                    </div>`   
+                    </div>`  
                     
+              
                 const btnDelete = newDivThree.querySelectorAll(".btnDelete");
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
+            
+                const conditionalUser = ()=>{                    
+                    if(userId === dataPost.userId){
+                        ///console.log(userId)
+                        //console.log(dataPost.userId)   
+                        console.log('son iguales  se mostrarán los botones') 
+                        
+                        for(let i=0; i < btnDelete.length; i++) {
+                            btnDelete[i].style.display = "flex";
+                        }   
+                        for(let j=0; j < btnEdit.length; j++) {
+                            btnEdit[j].style.display = "flex";
+                        }    
+                        
+    
+                    }
+                    /*if(userId !=dataPost.userId){
+                        console.log('son diferentes, NO se pueden ver los botones');
+                        }  */  
+                    
+                }
+                conditionalUser();
+                
 
                  //Funcion borrar
 
