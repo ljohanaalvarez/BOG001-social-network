@@ -2,6 +2,17 @@ import {footer} from './footer.js';
 import {header} from './headerViews.js';
 import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFirebase.js'; 
 
+function conditionalUser(dataPost) {
+    if (userId !== dataPost.userId) {
+        return '';
+    }
+
+    return `
+      <button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
+      <button type="submit" class = "button btnEdit " data-id = ${dataPost.id}>Editar</button>
+    `;
+}
+
 export const publicationsPage = () =>{
     const viewPublications = 
     `${header}       
@@ -45,7 +56,7 @@ export const publicationsPage = () =>{
                         </div>
                         <div>
                             <h3 id="userPost">${dataPost.name}
-                            ${dataPost.userId}</h3>
+                            </h3>
                         </div> 
                         <div>
                             <span id = "like"></span>
@@ -53,40 +64,18 @@ export const publicationsPage = () =>{
                         <div class = "containerCommentary">
                             <p id = "commentaryP">${dataPost.commitForm}</p>
                         </div>
-                        <div class="myBtnPost">
+                        <div class="myBtnPost" id = "myBtnPost">
                         
-                        AQUI
+                        ${conditionalUser(dataPost)}
                         
                         </div>
-                    </div>`  
-                    
-              
+                    </div>
+                    ` ;
+
                 const btnDelete = newDivThree.querySelectorAll(".btnDelete");
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
-                const myBtnPost = newDivThree.getElementsByClassName("myBtnPost");
-
-                for(let i=0; i < myBtnPost.length; i++){
-                    myBtnPost[i].addEventListener('click', conditionalUser);
-                }
-                           
-                function conditionalUser(){                 
-                    
-                    if(userId === dataPost.userId){
-                        myBtnPost.innerHTML=''
-                        myBtnPost.innerHTML+=
-                        `<button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
-                        <button type="submit" class = "button btnEdit " data-id = ${dataPost.id}>Editar</button>`
- 
-                            console.log('son iguales  se mostrarán los botones') 
-                                                       
-                        }else{
-                            console.log('son direfentes, no tiene permiso') 
-                            console.log(dataPost.userId, userId) 
-                            myBtnPost.innerHTML=''
-                        }
-                }
-
-                 //Funcion borrar
+               
+                //Funcion borrar
 
                 btnDelete.forEach(btn => {
                     btn.addEventListener("click", async (e) =>{ 
@@ -141,6 +130,5 @@ export const publicationsPage = () =>{
     
     return newDivThree;
 }
-
 
 
