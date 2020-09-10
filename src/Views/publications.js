@@ -2,16 +2,26 @@ import {footer} from './footer.js';
 import {header} from './headerViews.js';
 import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFirebase.js'; 
 
-function conditionalUser(dataPost) {
+/*function conditionalUser(dataPost) {
     if (userId !== dataPost.userId) {
         return '';
     }
-
     return `
       <button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
       <button type="submit" class = "button btnEdit " data-id = ${dataPost.id}>Editar</button>
     `;
+}*/
+
+// Antes del signo pregunta se coloca la condición, luego del signo pregunta lo que va a retornar si se cumple la condición
+//después de los dos puntos lo que retorna si no se cumple la condición.
+
+function conditionalUser(dataPost) {
+    return userId !== dataPost.userId ? '':
+    `<button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
+      <button type="submit" class = "button btnEdit " data-id = ${dataPost.id}>Editar</button>`;
 }
+
+let btnLikeWhite = `<img src="./imagenes/me-gusta1.png" alt="">`
 
 export const publicationsPage = () =>{
     const viewPublications = 
@@ -21,7 +31,7 @@ export const publicationsPage = () =>{
         <div class="containerEdit" id = "containerEdit" >
         </div>
         <div id= "post-container">
-        </div>
+        </div>  
     </main>        
     ${footer}`;
 
@@ -58,11 +68,12 @@ export const publicationsPage = () =>{
                             <h3 id="userPost">${dataPost.name}
                             </h3>
                         </div> 
-                        <div>
-                            <span id = "like"></span>
-                        </div>
+                        
                         <div class = "containerCommentary">
                             <p id = "commentaryP">${dataPost.commitForm}</p>
+                        </div>
+                        <div>
+                            <span id = "like" class = "listenerLike likeWhite">${btnLikeWhite}</span>
                         </div>
                         <div class="myBtnPost" id = "myBtnPost">
                         
@@ -130,5 +141,6 @@ export const publicationsPage = () =>{
     
     return newDivThree;
 }
+
 
 
