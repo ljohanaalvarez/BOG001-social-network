@@ -15,13 +15,27 @@ import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFir
 // Antes del signo pregunta se coloca la condición, luego del signo pregunta lo que va a retornar si se cumple la condición
 //después de los dos puntos lo que retorna si no se cumple la condición.
 
-function conditionalUser(dataPost) {
+function userOptions(dataPost) {
     return userId !== dataPost.userId ? '':
     `<button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
       <button type="submit" class = "button btnEdit " data-id = ${dataPost.id}>Editar</button>`;
 }
 
-let btnLikeWhite = `<img src="./imagenes/me-gusta1.png" alt="">`
+const btnLikeWhite = `<img src="./imagenes/me-gusta1.png" alt="">`;
+    
+/*({afterRender: function replaceClass () {
+    containerEvent.addEventListener("click", () => { 
+        containerEvent.querySelector(".likeWhite").classList.replace("likeWhite", "likeGreen");
+    })
+}})*/
+
+/*function replaceClass () {
+    containerEvent.addEventListener("click", () => { 
+        containerEvent.querySelector(".likeWhite").classList.replace("likeWhite", "likeGreen");
+    })
+}
+replaceClass();*/
+
 
 export const publicationsPage = () =>{
     const viewPublications = 
@@ -58,6 +72,8 @@ export const publicationsPage = () =>{
             querySnapshot.forEach( doc => { 
                 const dataPost = doc.data();
                 dataPost.id = doc.id;
+
+
                             
                 containerEvent.innerHTML += `
                     <div class = "containerPostFinal"> 
@@ -65,27 +81,33 @@ export const publicationsPage = () =>{
                             <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
                         </div>
                         <div>
-                            <h3 id="userPost">${dataPost.name}
-                            </h3>
+                            <h3 id="userPost">${dataPost.name}</h3>
                         </div> 
-                        
                         <div class = "containerCommentary">
                             <p id = "commentaryP">${dataPost.commitForm}</p>
                         </div>
                         <div>
-                            <span id = "like" class = "listenerLike likeWhite">${btnLikeWhite}</span>
+                            <span id="like" class="likeWhite">${btnLikeWhite}</span>
+                            <p class="counterLikeWhite"></p>
                         </div>
-                        <div class="myBtnPost" id = "myBtnPost">
-                        
-                        ${conditionalUser(dataPost)}
-                        
+                        <div class="myBtnPost">
+                        ${userOptions(dataPost)}
                         </div>
-                    </div>
-                    ` ;
-
+                    </div>`  
+                    
+               
                 const btnDelete = newDivThree.querySelectorAll(".btnDelete");
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
-               
+                
+                const countBtnLike = newDivThree.querySelector(".likeWhite");
+                const counterLikeWhite = newDivThree.querySelector(".counterLikeWhite");
+                let count = 0;
+                countBtnLike.addEventListener("click", () => {
+                        count += 1;
+                        counterLikeWhite.innerHTML = "like" + count;
+                    }
+                );
+
                 //Funcion borrar
 
                 btnDelete.forEach(btn => {
