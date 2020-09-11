@@ -2,17 +2,7 @@ import {footer} from './footer.js';
 import {header} from './headerViews.js';
 import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFirebase.js'; 
 
-/*function conditionalUser(dataPost) {
-    if (userId !== dataPost.userId) {
-        return '';
-    }
-    return `
-      <button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
-      <button type="submit" class = "button btnEdit " data-id = ${dataPost.id}>Editar</button>
-    `;
-}*/
-
-// Antes del signo pregunta se coloca la condición, luego del signo pregunta lo que va a retornar si se cumple la condición
+// Operador Ternario: antes del signo pregunta se coloca la condición, luego del signo pregunta lo que va a retornar si se cumple la condición
 //después de los dos puntos lo que retorna si no se cumple la condición.
 
 function userOptions(dataPost) {
@@ -20,22 +10,6 @@ function userOptions(dataPost) {
     `<button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
       <button type="submit" class = "button btnEdit " data-id = ${dataPost.id}>Editar</button>`;
 }
-
-const btnLikeWhite = `<img src="./imagenes/me-gusta1.png" alt="">`;
-    
-/*({afterRender: function replaceClass () {
-    containerEvent.addEventListener("click", () => { 
-        containerEvent.querySelector(".likeWhite").classList.replace("likeWhite", "likeGreen");
-    })
-}})*/
-
-/*function replaceClass () {
-    containerEvent.addEventListener("click", () => { 
-        containerEvent.querySelector(".likeWhite").classList.replace("likeWhite", "likeGreen");
-    })
-}
-replaceClass();*/
-
 
 export const publicationsPage = () =>{
     const viewPublications = 
@@ -72,9 +46,16 @@ export const publicationsPage = () =>{
             querySnapshot.forEach( doc => { 
                 const dataPost = doc.data();
                 dataPost.id = doc.id;
-
-
-                            
+                
+                const users= dataPost.users;
+                let iconLikesWhite='';
+                let IconLikesGreen='';
+                if(users.includes(userId)){
+                    IconLikesGreen = `<span id="like"><i class="fas fa-thumbs-up likeGreen" data-id = ${dataPost.id}>${dataPost.likes}</i>  </span>`
+                    
+                }else{
+                    iconLikesWhite =`<span id="like"><i class="fas fa-thumbs-up likeWhite" data-id = ${dataPost.id}>${dataPost.likes}</i>  </span>`
+                } 
                 containerEvent.innerHTML += `
                     <div class = "containerPostFinal"> 
                         <div>
@@ -87,26 +68,50 @@ export const publicationsPage = () =>{
                             <p id = "commentaryP">${dataPost.commitForm}</p>
                         </div>
                         <div>
-                            <span id="like" class="likeWhite">${btnLikeWhite}</span>
-                            <p class="counterLikeWhite"></p>
-                        </div>
+                            ${IconLikesGreen}${iconLikesWhite}                            
+                        </div>                
                         <div class="myBtnPost">
-                        ${userOptions(dataPost)}
+                        ${userOptions(dataPost)}                        
                         </div>
-                    </div>`  
-                    
-               
+                    </div>`                    
+                                                          
                 const btnDelete = newDivThree.querySelectorAll(".btnDelete");
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
+                const countBtnLike = newDivThree.querySelectorAll(".likeWhite"); 
+                const countBtnRemoveLike = newDivThree.querySelectorAll(".likeGreen"); 
+                console.log(countBtnLike)                  
                 
-                const countBtnLike = newDivThree.querySelector(".likeWhite");
-                const counterLikeWhite = newDivThree.querySelector(".counterLikeWhite");
-                let count = 0;
-                countBtnLike.addEventListener("click", () => {
-                        count += 1;
-                        counterLikeWhite.innerHTML = "like" + count;
-                    }
-                );
+                countBtnLike.forEach(hand => {
+
+                    hand.addEventListener("click", (e) => {
+                        let users = dataPost.users;
+                        let likes = dataPost.likes;
+                        let id = e.target.dataset.id;
+                        users.push(userId);                        
+                        e.target.classList.remove('likeWhite');
+                        e.target.classList.add('likeGreen');
+                        e.target.textContent = ++likes;
+                        upDatePosts(id,{likes, users});                          
+                    })  
+                })
+                //RemoveLike
+                
+                countBtnRemoveLike.forEach(hand => {
+
+                    hand.addEventListener("click", (e) => {
+                        let users = dataPost.users;
+                        let likes = dataPost.likes;
+                        let id = e.target.dataset.id;
+                        e.target.textContent = --likes;
+                        e.target.classList.remove('likeGreen');
+                        e.target.classList.add('likeWhite');
+                        let findPosition = users.indexOf(userId);
+                        if(findPosition > -1){
+                            users.splice(findPosition, 1);
+                        }
+                        upDatePosts(id,{likes, users});                          
+                    })  
+                })
 
                 //Funcion borrar
 
@@ -114,15 +119,15 @@ export const publicationsPage = () =>{
                     btn.addEventListener("click", async (e) =>{ 
                         await deletePost(e.target.dataset.id);
                     });
-                })
+                })               
 
                 //Funcion editar
 
                 btnEdit.forEach(btn => {
                     btn.addEventListener("click", async (e) =>{ 
                        const doc = await getPosts(e.target.dataset.id);
+                       console.log(e.target.dataset.id);
                        let id = e.target.dataset.id;
-
                        const containerEdit = newDivThree.querySelector("#containerEdit");
                        containerEdit.innerHTML =`
                        <div class="containerPost">
