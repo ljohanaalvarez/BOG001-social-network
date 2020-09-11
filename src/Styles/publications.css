@@ -49,16 +49,13 @@
 }
 
 .likeWhite{
-    width: 30px;
-}
-
-.likeWhite > img{
-    width: 30px;
+    width: 40px;
+    color:white;
 }
 
 .likeGreen{
-    width: 30px;
-    background: url(../imagenes/me-gusta.png) ;
+    width: 40px;
+    color: green;
 }
 
 
