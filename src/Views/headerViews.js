@@ -5,7 +5,7 @@ export const header=
     </div>
     <nav>
     <ul class = "navPages">
-        <li><a href="#/publicaciones">Publicaciones</a></li
+        <li><a href="#/publicaciones">Publicaciones</a></li>
         <li><a href="#/crearpublicacion">Crear Publicación</a></li>
         <li><a class = "close-sesion" href="#/cerrarSesion">Cerrar Sesión</a></li>
     </ul>
