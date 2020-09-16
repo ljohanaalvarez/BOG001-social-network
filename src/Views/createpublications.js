@@ -62,6 +62,12 @@ export const createPublicationsPage = () =>{
             commitForm.focus();
         })
 
+        const navPages = newDivFour.querySelector(".navPages");
+        const mountainMenu = newDivFour.querySelector("#mountainMenu");
+        mountainMenu.addEventListener("click", showMenu);
+        function showMenu(){
+            navPages.classList.toggle("appear");
+        }
     return newDivFour;
 }
 

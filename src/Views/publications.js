@@ -179,6 +179,13 @@ export const publicationsPage = () =>{
     }
 
     printPost();
+
+    const navPages = newDivThree.querySelector(".navPages");
+    const mountainMenu = newDivThree.querySelector("#mountainMenu");
+    mountainMenu.addEventListener("click", showMenu);
+    function showMenu(){
+        navPages.classList.toggle("appear");
+    }
     
     return newDivThree;
 }
