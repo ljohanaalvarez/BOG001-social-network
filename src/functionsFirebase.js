@@ -20,13 +20,13 @@ export const getUsers = () => {
 
 //función para crear colleccion de posts con sus respectivos documentos
 
-export const savePost = (commitForm, userId, name, likes) =>
+export const savePost = (commitForm, userId, name, usersLikes, counterLikes) =>
 fs.collection('posts').doc().set({
             commitForm,
             userId,
             name,
-            likes
-        
+            usersLikes,
+            counterLikes         
 });  
 
 //función para crear colleccion de users con sus respectivos documentos

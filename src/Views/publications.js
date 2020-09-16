@@ -47,14 +47,15 @@ export const publicationsPage = () =>{
                 const dataPost = doc.data();
                 dataPost.id = doc.id;
                 
-                const likes= dataPost.likes;
+                const usersLikes= dataPost.usersLikes;
                 let iconLikesWhite='';
                 let IconLikesGreen='';
-                if(likes.includes(userId)){
-                    IconLikesGreen = `<span id="like"><i class="fas fa-thumbs-up likeGreen" data-id = ${dataPost.id}></i>  </span>`
+
+                if(usersLikes.includes(userId)){
+                    IconLikesGreen = `<span id="like"><i class="fas fa-thumbs-up likeGreen" data-id = ${dataPost.id}>${dataPost.counterLikes}</i> </span>`
                     
                 }else{
-                    iconLikesWhite =`<span id="like"><i class="fas fa-thumbs-up likeWhite" data-id = ${dataPost.id}></i>  </span>`
+                    iconLikesWhite =`<span id="like"><i class="fas fa-thumbs-up likeWhite" data-id = ${dataPost.id}>${dataPost.counterLikes}</i> </span>`
                 } 
                 containerEvent.innerHTML += `
                     <div class = "containerPostFinal"> 
@@ -68,7 +69,10 @@ export const publicationsPage = () =>{
                             <p id = "commentaryP">${dataPost.commitForm}</p>
                         </div>
                         <div>
-                            ${IconLikesGreen}${iconLikesWhite}                            
+                        ${iconLikesWhite}${IconLikesGreen}
+                            <p class = "counter" data-id = ${dataPost.id} >
+                            </p>
+                                                     
                         </div>                
                         <div class="myBtnPost">
                         ${userOptions(dataPost)}                        
@@ -79,37 +83,67 @@ export const publicationsPage = () =>{
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
                 const countBtnLike = newDivThree.querySelectorAll(".likeWhite"); 
                 const countBtnRemoveLike = newDivThree.querySelectorAll(".likeGreen"); 
-                console.log(countBtnLike)                  
+                console.log(countBtnLike); 
+                
+               
                 
                 countBtnLike.forEach(hand => {
-
                     hand.addEventListener("click", (e) => {
-                        let like = dataPost.likes;
-                        let id = e.target.dataset.id;
-                        like.push(userId);                        
+                        let usersLikes = dataPost.usersLikes;
+                        let counterLikes = dataPost.counterLikes;;
+                        let abc = userId;
+                        console.log(usersLikes);
+                        usersLikes.push(abc);
+                        console.log(usersLikes.length);
                         e.target.classList.remove('likeWhite');
-                        e.target.classList.add('likeGreen');
-                        //e.target.textContent = ++likes;
-                        upDatePosts(id,{likes});                          
+                        e.target.classList.add('likeGreen'); 
+                        e.target.textContent = ++counterLikes;
+                        let id = e.target.dataset.id;            
+                        upDatePosts(id,{usersLikes, counterLikes});                         
                     })  
+                })
+
+               countBtnRemoveLike.forEach(hand => {
+                    hand.addEventListener("click", (e) => {
+                        let usersLikes = dataPost.usersLikes;
+                        let counterLikes = dataPost.counterLikes;
+                        let abc = userId;
+                        console.log(usersLikes);                               
+                        e.target.classList.remove('likeGreen');
+                        e.target.classList.add('likeWhite');
+                        let findPosition = usersLikes.indexOf(userId); 
+                        console.log('el usuario ya dió like a este post y esta en la posición ' + findPosition + 'del array, la eliminaré'); 
+                        if(findPosition > -1){
+                            usersLikes.splice(findPosition,1); 
+                        }                                                
+                        e.target.textContent = --counterLikes;
+                        let id = e.target.dataset.id;            
+                        upDatePosts(id,{usersLikes, counterLikes});                      
+                    })                     
                 })
                 //RemoveLike
                 
-                countBtnRemoveLike.forEach(hand => {
+               /* countBtnRemoveLike.forEach(hand => {
 
                     hand.addEventListener("click", (e) => {
+                       
                         let like = dataPost.likes;
+                        console.log(like); 
+                        let countLike= like.length;
                         let id = e.target.dataset.id;
-                        //e.target.textContent = --likes;
-                        e.target.classList.remove('likeGreen');
-                        e.target.classList.add('likeWhite');
+                        //e.target.classList.remove('likeGreen');
+                       // e.target.classList.add('likeWhite');
                         let findPosition = like.indexOf(userId);
+                        console.log('indexOf del like a quitar ' + findPosition);
                         if(findPosition > -1){
-                            like.splice(findPosition, 1);
+                            like.splice(findPosition,1); 
                         }
-                        upDatePosts(id,{likes});                          
+                        upDatePosts(id,{likes}); 
+                        console.log('#  likes quitando likes ' + countLike);
+                        //e.target.textContent = countLike;  
+                        //newDivThree.querySelector('.counter').innerHTML = 'countLike';                       
                     })  
-                })
+                })*/
 
                 //Funcion borrar
 
