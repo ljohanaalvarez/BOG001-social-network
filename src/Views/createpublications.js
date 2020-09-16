@@ -50,14 +50,14 @@ export const createPublicationsPage = () =>{
         });
 
         //Enviar info del formulario de crear publicación y se crea la collección de posts con sus respectivos documentos(cada post)
-        let likes = 0;
-        let users = [];
+        let usersLikes = [];
+        let counterLikes = 0;
         const postForm = newDivFour.querySelector("#postForm");   
         postForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const commitForm = postForm['commitForm'];
             console.log(userId, name);
-            await savePost(commitForm.value, userId, name, likes, users);
+            await savePost(commitForm.value, userId, name, usersLikes, counterLikes);
             postForm.reset();
             commitForm.focus();
         })
