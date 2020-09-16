@@ -85,7 +85,7 @@ export const publicationsPage = () =>{
                 const countBtnRemoveLike = newDivThree.querySelectorAll(".likeGreen"); 
                 console.log(countBtnLike); 
                 
-               
+               //AddLike
                 
                 countBtnLike.forEach(hand => {
                     hand.addEventListener("click", (e) => {
@@ -102,6 +102,8 @@ export const publicationsPage = () =>{
                         upDatePosts(id,{usersLikes, counterLikes});                         
                     })  
                 })
+
+                //RemoveLike
 
                countBtnRemoveLike.forEach(hand => {
                     hand.addEventListener("click", (e) => {
@@ -121,29 +123,9 @@ export const publicationsPage = () =>{
                         upDatePosts(id,{usersLikes, counterLikes});                      
                     })                     
                 })
-                //RemoveLike
                 
-               /* countBtnRemoveLike.forEach(hand => {
-
-                    hand.addEventListener("click", (e) => {
-                       
-                        let like = dataPost.likes;
-                        console.log(like); 
-                        let countLike= like.length;
-                        let id = e.target.dataset.id;
-                        //e.target.classList.remove('likeGreen');
-                       // e.target.classList.add('likeWhite');
-                        let findPosition = like.indexOf(userId);
-                        console.log('indexOf del like a quitar ' + findPosition);
-                        if(findPosition > -1){
-                            like.splice(findPosition,1); 
-                        }
-                        upDatePosts(id,{likes}); 
-                        console.log('#  likes quitando likes ' + countLike);
-                        //e.target.textContent = countLike;  
-                        //newDivThree.querySelector('.counter').innerHTML = 'countLike';                       
-                    })  
-                })*/
+                
+               
 
                 //Funcion borrar
 
