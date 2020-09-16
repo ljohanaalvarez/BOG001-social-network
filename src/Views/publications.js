@@ -47,14 +47,14 @@ export const publicationsPage = () =>{
                 const dataPost = doc.data();
                 dataPost.id = doc.id;
                 
-                const users= dataPost.users;
+                const likes= dataPost.likes;
                 let iconLikesWhite='';
                 let IconLikesGreen='';
-                if(users.includes(userId)){
-                    IconLikesGreen = `<span id="like"><i class="fas fa-thumbs-up likeGreen" data-id = ${dataPost.id}>${dataPost.likes}</i>  </span>`
+                if(likes.includes(userId)){
+                    IconLikesGreen = `<span id="like"><i class="fas fa-thumbs-up likeGreen" data-id = ${dataPost.id}></i>  </span>`
                     
                 }else{
-                    iconLikesWhite =`<span id="like"><i class="fas fa-thumbs-up likeWhite" data-id = ${dataPost.id}>${dataPost.likes}</i>  </span>`
+                    iconLikesWhite =`<span id="like"><i class="fas fa-thumbs-up likeWhite" data-id = ${dataPost.id}></i>  </span>`
                 } 
                 containerEvent.innerHTML += `
                     <div class = "containerPostFinal"> 
@@ -84,14 +84,13 @@ export const publicationsPage = () =>{
                 countBtnLike.forEach(hand => {
 
                     hand.addEventListener("click", (e) => {
-                        let users = dataPost.users;
-                        let likes = dataPost.likes;
+                        let like = dataPost.likes;
                         let id = e.target.dataset.id;
-                        users.push(userId);                        
+                        like.push(userId);                        
                         e.target.classList.remove('likeWhite');
                         e.target.classList.add('likeGreen');
-                        e.target.textContent = ++likes;
-                        upDatePosts(id,{likes, users});                          
+                        //e.target.textContent = ++likes;
+                        upDatePosts(id,{likes});                          
                     })  
                 })
                 //RemoveLike
@@ -99,17 +98,16 @@ export const publicationsPage = () =>{
                 countBtnRemoveLike.forEach(hand => {
 
                     hand.addEventListener("click", (e) => {
-                        let users = dataPost.users;
-                        let likes = dataPost.likes;
+                        let like = dataPost.likes;
                         let id = e.target.dataset.id;
-                        e.target.textContent = --likes;
+                        //e.target.textContent = --likes;
                         e.target.classList.remove('likeGreen');
                         e.target.classList.add('likeWhite');
-                        let findPosition = users.indexOf(userId);
+                        let findPosition = like.indexOf(userId);
                         if(findPosition > -1){
-                            users.splice(findPosition, 1);
+                            like.splice(findPosition, 1);
                         }
-                        upDatePosts(id,{likes, users});                          
+                        upDatePosts(id,{likes});                          
                     })  
                 })
 
@@ -165,6 +163,13 @@ export const publicationsPage = () =>{
     }
 
     printPost();
+
+    const navPages = newDivThree.querySelector(".navPages");
+    const mountainMenu = newDivThree.querySelector("#mountainMenu");
+    mountainMenu.addEventListener("click", showMenu);
+    function showMenu(){
+        navPages.classList.toggle("appear");
+    }
     
     return newDivThree;
 }

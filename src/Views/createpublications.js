@@ -50,18 +50,23 @@ export const createPublicationsPage = () =>{
         });
 
         //Enviar info del formulario de crear publicación y se crea la collección de posts con sus respectivos documentos(cada post)
-        let likes = 0;
-        let users = [];
+        let likes = [];
         const postForm = newDivFour.querySelector("#postForm");   
         postForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const commitForm = postForm['commitForm'];
             console.log(userId, name);
-            await savePost(commitForm.value, userId, name, likes, users);
+            await savePost(commitForm.value, userId, name, likes);
             postForm.reset();
             commitForm.focus();
         })
 
+        const navPages = newDivFour.querySelector(".navPages");
+        const mountainMenu = newDivFour.querySelector("#mountainMenu");
+        mountainMenu.addEventListener("click", showMenu);
+        function showMenu(){
+            navPages.classList.toggle("appear");
+        }
     return newDivFour;
 }
 
