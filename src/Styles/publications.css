@@ -11,34 +11,40 @@
     text-decoration: none;
     color: aliceblue
 }
-/*EStilos publicaciones*/
-#post-container{
+/*Estilos publicaciones*/
+.mainBackgroundContainer{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-top: 5% ;
-    padding-bottom: 10%;
+    align-items:  center;
 }
-
+#post-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80vw;
+    justify-content: space-around;
+    padding-top: 5% ;
+    padding-bottom: 5% ; 
+}
 .containerPostFinal{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30%;
-    height: 350px;
+    width: 40%;
+    /*height: 350px;*/
     margin-bottom: 5%;
+    /*margin-right: 5%;*/
     background: #79CDB2;
     box-shadow: 10px 10px 4px rgba(64, 107, 94, 0.87);
 }
-
 .containerCommentary{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 350px; 
-    height: 140px;
+    width: /*350px; */80%;
+    height: 150px;
     background-color: antiquewhite;
     margin-top: 2%;
     margin-bottom:2%;
@@ -46,16 +52,52 @@
 
 #commentaryP{
     margin: 2%;
+    width: /*350px; */80%;
+    height: 150px;
 }
 
-.likeWhite{
+.likeDown{
     width: 40px;
     color:white;
 }
 
-.likeGreen{
+.likeUp{
     width: 40px;
     color: green;
+}
+@media(max-width:1000px){
+    #post-container{
+        width: 90vw; 
+    }
+    .containerPostFinal{
+        font-size: 15px;
+    }
+    .containerCommentary{
+        height: 250px;  
+    }
+}
+
+@media(max-width:700px){
+    #post-container{
+        flex-direction: column;
+        align-items:  center;
+    }
+    .containerPostFinal{
+        font-size: 14px;
+        width: 60%;
+    }
+}
+
+@media (max-width:500px){
+
+    .containerPostFinal{
+        width: 80%;
+    }
+    .containerCommentary{
+        width: 90%; 
+        height: 150px;
+    }
+
 }
 
 
