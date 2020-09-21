@@ -7,8 +7,8 @@ import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFir
 
 function userOptions(dataPost) {
     return userId !== dataPost.userId ? '':
-    `<button type="submit" class = "button  btnDelete " data-id = ${dataPost.id}>Borrar</button>
-      <button type="submit" class = "button btnEdit " data-id = ${dataPost.id}>Editar</button>`;
+    `<button type="submit" class = "button  btnDelete" data-id = ${dataPost.id}>Borrar</button>
+      <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>`;
 }
 
 export const publicationsPage = () =>{
@@ -26,20 +26,9 @@ export const publicationsPage = () =>{
     const newDivThree = document.createElement('div');
     newDivThree.innerHTML = viewPublications;
 
-    //Cerrar sesión de usuario
-
-    const closeSesion = newDivThree.querySelector(".close-sesion");
-    closeSesion.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        auth.signOut()
-        .then( () => { 
-            window.location.href="#/home"
-        })
-    });
-
     const containerEvent = newDivThree.querySelector("#post-container");
 
+    
     const printPost = async() => {
         onGetPosts((querySnapshot => {
             containerEvent.innerHTML =""
@@ -79,13 +68,13 @@ export const publicationsPage = () =>{
                         </div>
                     </div>`                    
                                                           
-                const btnDelete = newDivThree.querySelectorAll(".btnDelete");
+                //const btnDelete = newDivThree.querySelectorAll(".btnDelete");
                 const btnEdit = newDivThree.querySelectorAll(".btnEdit");
                 const countBtnLike = newDivThree.querySelectorAll(".likeWhite"); 
                 const countBtnRemoveLike = newDivThree.querySelectorAll(".likeGreen"); 
                 console.log(countBtnLike); 
                 
-               
+               //AddLike
                 
                 countBtnLike.forEach(hand => {
                     hand.addEventListener("click", (e) => {
@@ -102,6 +91,8 @@ export const publicationsPage = () =>{
                         upDatePosts(id,{usersLikes, counterLikes});                         
                     })  
                 })
+
+                //RemoveLike
 
                countBtnRemoveLike.forEach(hand => {
                     hand.addEventListener("click", (e) => {
@@ -121,41 +112,10 @@ export const publicationsPage = () =>{
                         upDatePosts(id,{usersLikes, counterLikes});                      
                     })                     
                 })
-                //RemoveLike
                 
-               /* countBtnRemoveLike.forEach(hand => {
-
-                    hand.addEventListener("click", (e) => {
-                       
-                        let like = dataPost.likes;
-                        console.log(like); 
-                        let countLike= like.length;
-                        let id = e.target.dataset.id;
-                        //e.target.classList.remove('likeGreen');
-                       // e.target.classList.add('likeWhite');
-                        let findPosition = like.indexOf(userId);
-                        console.log('indexOf del like a quitar ' + findPosition);
-                        if(findPosition > -1){
-                            like.splice(findPosition,1); 
-                        }
-                        upDatePosts(id,{likes}); 
-                        console.log('#  likes quitando likes ' + countLike);
-                        //e.target.textContent = countLike;  
-                        //newDivThree.querySelector('.counter').innerHTML = 'countLike';                       
-                    })  
-                })*/
-
-                //Funcion borrar
-
-                btnDelete.forEach(btn => {
-                    btn.addEventListener("click", async (e) =>{ 
-                        await deletePost(e.target.dataset.id);
-                    });
-                })               
-
                 //Funcion editar
 
-                btnEdit.forEach(btn => {
+               /* btnEdit.forEach(btn => {
                     btn.addEventListener("click", async (e) =>{ 
                        const doc = await getPosts(e.target.dataset.id);
                        console.log(e.target.dataset.id);
@@ -191,7 +151,7 @@ export const publicationsPage = () =>{
                             containerEdit.innerHTML ='';
                         }) 
                     });                   
-                })
+                })*/
             })            
         }))
     }
@@ -204,9 +164,82 @@ export const publicationsPage = () =>{
     function showMenu(){
         navPages.classList.toggle("appear");
     }
+
+
+    //Cerrar sesión de usuario
+    const closeSesion = newDivThree.querySelector(".close-sesion");
+    closeSesion.addEventListener("click", (e) => {
+        e.preventDefault();
+  
+        auth.signOut()
+        .then( () => { 
+            window.location.href="#/home"
+        })
+    });
+
+    // Delete post    
+    const deleteMyPost = async(e) => {
+        let classTagClick= "button  btnDelete";
+       
+        if(e.target.className !== classTagClick){
+            console.log(e.target.className);
+            return;
+        }
+        e.preventDefault();
+        await deletePost(e.target.dataset.id);
+    }
     
+    containerEvent.addEventListener("click", deleteMyPost);  
+    
+    //Edit post
+
+    const editMyPost = async(e, doc) => {
+        const dataPost = doc.data();
+        let classTagClickTwo = "button btnEdit";
+
+        if(e.target.className !== classTagClickTwo){
+            console.log(classTagClickTwo);
+            return;
+        }
+        e.preventDefault();
+        console.log('la puedo editar');
+        await getPosts(e.target.dataset.id);
+        console.log(e.target.dataset.id);
+        let id = e.target.dataset.id;
+        const containerEdit = newDivThree.querySelector("#containerEdit");
+        containerEdit.innerHTML =`
+            <div class="containerPost">
+                <form id="postForm">
+                    <div class="containerUser">
+                        <div>
+                            <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
+                        </div>
+
+                        <div>
+                            <h3 id="userPost"></h3>
+                        </div>
+                    </div>         
+                    <div>
+                        <textarea id="commitForm" cols="40" wrap= hard rows="5" maxlength="240" required 
+                        placeholder = "Máximo 240 carácteres incluidos espacios"></textarea>
+                    </div>
+                    <label class = "containerButton2">
+                        <button type="submit" id="btnEdit" class = "button">Editar</button>
+                    </label>
+                </form>
+            </div>` 
+        
+        const postForm = newDivThree.querySelector("#postForm");
+        postForm['commitForm'].value = dataPost.commitForm 
+          
+        postForm.addEventListener('submit', async (e) => {e.preventDefault();
+            await upDatePosts( id, {commitForm: commitForm.value });
+            containerEdit.innerHTML ='';
+        })
+        
+            
+    } 
+    containerEvent.addEventListener("click", editMyPost); 
+       
     return newDivThree;
 }
-
-
-
