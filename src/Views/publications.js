@@ -11,6 +11,36 @@ export function userOptions(dataPost) {
     `<button type="submit" class = "button btnDelete" data-id = ${dataPost.id}>Borrar</button>
       <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>`;
 }
+    // function addOrRemoveLike  
+    export const addOrRemoveLike =  (e) =>{      
+        if(e.target.className === 'fas fa-thumbs-up likeDown'){
+            let id = e.target.dataset.id;  
+            let dataPost = JSON.parse(localStorage.getItem(id));
+            let usersLikes = dataPost.usersLikes;
+            let counterLikes = dataPost.counterLikes;
+            usersLikes.push(userId);
+            e.target.classList.remove('likeDown');
+            e.target.classList.add('likeUp'); 
+            counterLikes++;     
+            upDatePosts(id,{usersLikes, counterLikes})
+        }
+        else if(e.target.className === 'fas fa-thumbs-up likeUp'){
+            let id = e.target.dataset.id;  
+            let dataPost = JSON.parse(localStorage.getItem(id));
+            let usersLikes = dataPost.usersLikes;
+            let counterLikes = dataPost.counterLikes;
+            e.target.classList.remove('likeUp');
+            e.target.classList.add('likeDown'); 
+            let findPosition = usersLikes.indexOf(userId);  
+            if(findPosition !== -1){
+                usersLikes.splice(findPosition,1); 
+            } 
+            counterLikes = counterLikes-1;
+            upDatePosts(id,{usersLikes, counterLikes});
+        }else{
+            return;
+        }
+    }
 //console.log(dataPost);
 
 export const publicationsPage = () =>{
@@ -28,7 +58,10 @@ export const publicationsPage = () =>{
     const containerEvent = newDivThree.querySelector("#post-container");
 
     const printPosts = async() => {
+        console.log('Estoy en print post');
         onGetPosts((querySnapshot => {
+            console.log('Estoy en onGetPost');
+
             containerEvent.innerHTML =""
             querySnapshot.forEach( doc => { 
                 const dataPost = doc.data();
@@ -73,36 +106,6 @@ export const publicationsPage = () =>{
 
     printPosts();
 
-    // function addOrRemoveLike  
-    const addOrRemoveLike =  (e) =>{      
-        if(e.target.className === 'fas fa-thumbs-up likeDown'){
-            let id = e.target.dataset.id;  
-            let dataPost = JSON.parse(localStorage.getItem(id));
-            let usersLikes = dataPost.usersLikes;
-            let counterLikes = dataPost.counterLikes;
-            usersLikes.push(userId);
-            e.target.classList.remove('likeDown');
-            e.target.classList.add('likeUp'); 
-            counterLikes++;     
-            upDatePosts(id,{usersLikes, counterLikes})
-        }
-        else if(e.target.className === 'fas fa-thumbs-up likeUp'){
-            let id = e.target.dataset.id;  
-            let dataPost = JSON.parse(localStorage.getItem(id));
-            let usersLikes = dataPost.usersLikes;
-            let counterLikes = dataPost.counterLikes;
-            e.target.classList.remove('likeUp');
-            e.target.classList.add('likeDown'); 
-            let findPosition = usersLikes.indexOf(userId);  
-            if(findPosition !== -1){
-                usersLikes.splice(findPosition,1); 
-            } 
-            counterLikes = counterLikes-1;
-            upDatePosts(id,{usersLikes, counterLikes});
-        }else{
-            return;
-        }
-    }
 
     //Function deleteMypost
     const deleteMyPost = async(e) => {      
@@ -171,4 +174,5 @@ export const publicationsPage = () =>{
      
     return newDivThree;
 }
+
 

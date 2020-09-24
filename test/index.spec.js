@@ -4,8 +4,8 @@
 //global.fs = firebase.firestore();
 //global.auth = firebase.auth();
 //global.user = "L5fvLCTpCPa1lorntAVmFzHl1Dl1";
-import { publicationsPage, userOptions } from '../src/Views/publications.js';
-import { savePost, saveUser, getUsers } from '../src/functionsFirebase.js';
+import { publicationsPage, userOptions, printPosts } from '../src/Views/publications.js';
+import { savePost, saveUser, getUsers, onGetPosts } from '../src/functionsFirebase.js';
 
 
 /*describe('publicationsPage', () => {
@@ -15,9 +15,13 @@ import { savePost, saveUser, getUsers } from '../src/functionsFirebase.js';
 });*/
 
 jest.mock('../src/functionsFirebase.js', () => ({
-  onGetPosts: () => {},
-  upDatePosts: () => {},
+
+  upDatePosts: jest.fn(),
+  deletePost: jest.fn(),
+
 }));
+
+import {onGetPosts, upDatePosts, deletePost} from '../src/functionsFirebase.js'
 
 describe('publicationsPage', () => {
   it('debería ser una función', () => {
@@ -28,8 +32,16 @@ describe('publicationsPage', () => {
     expect(publicationsPage() instanceof HTMLElement).toBe(true);
   });
 
-});
+  it.only('debería poder borrar un post al dar un click', () => {
+    const el = publicationsPage();
+    const btnDelete = el.querySelector('.button btnDelete');
+    console.log(btnDelete);
+    //expect(container instanceof HTMLDivElement).toBe(true);
+    expect(btnDelete.tagName).toBe('BUTTON');
+    btnDelete.dispatchEvent(new Event('click'));
+  });
 
+});
 
 describe('userOptions', () => {
   it('debería ser una función', () => {
@@ -51,7 +63,7 @@ describe('userOptions', () => {
       expect(data).toBe('Pude crear una collección');
     });
   });
-});*/
+});*/    
 
 
 
