@@ -102,9 +102,10 @@ export const createWellcomePage = () =>{
         const alreadyRegistry = newDiv.querySelector("#alreadyRegistry");
         const userName = formRegistry['name-registry'];
 
-         //función para crear usuario con correo y contraseña
 
-        auth.createUserWithEmailAndPassword(emailRegistry, passwordRegistry)
+        //función para crear usuario con correo y contraseña
+
+       auth.createUserWithEmailAndPassword(emailRegistry, passwordRegistry)
         .then((userCredential) => { 
             userCredential.user.updateProfile({
                 displayName: userName.value,            
@@ -120,7 +121,8 @@ export const createWellcomePage = () =>{
             alreadyRegistry.innerHTML = "Ya estas registrado, ahora puedes iniciar sesión";
         })
 
-        // Crear colección de usuarios y documentos correspondiente a esta collección(cada usuario)      
+        // Crear colección de usuarios y documentos correspondiente a esta collección(cada usuario)    
+        
         saveUser(userName.value);     
     });
            

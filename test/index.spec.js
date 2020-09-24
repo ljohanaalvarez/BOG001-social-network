@@ -1,5 +1,5 @@
 // importamos la funcion que vamos a testear
-import { myFunction } from "../src/lib/index";
+import { publicationsPage } from '../src/Views/publications.js';
 
 describe('myFunction', () => {
   it('debería ser una función', () => {
