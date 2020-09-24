@@ -2,10 +2,11 @@ import {footer} from './footer.js';
 import {header} from './headerViews.js';
 import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFirebase.js'; 
 
+
 // Operador Ternario: antes del signo pregunta se coloca la condición, luego del signo pregunta lo que va a retornar si se cumple la condición
 //después de los dos puntos lo que retorna si no se cumple la condición.
 
-function userOptions(dataPost) {
+export function userOptions(dataPost) {
     return userId !== dataPost.userId ? '':
     `<button type="submit" class = "button btnDelete" data-id = ${dataPost.id}>Borrar</button>
       <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>`;
@@ -117,9 +118,6 @@ export const publicationsPage = () =>{
             return;        
         }else if(e.target.className === 'button btnEdit'){
             const doc = await getPosts(e.target.dataset.id);
-            console.log(e.target.dataset.id);
-            console.log(doc);
-            console.log(doc.id);
             let id = e.target.dataset.id;
             const containerEdit = newDivThree.querySelectorAll(".containerEdit");
             
@@ -127,7 +125,6 @@ export const publicationsPage = () =>{
                 const edit= item;
                 const editId = edit.dataset.id;
                 if(editId === doc.id){
-                    console.log(editId);
                     edit.innerHTML =
                         `<form id="postFormEdit">         
                             <div>
@@ -168,7 +165,6 @@ export const publicationsPage = () =>{
         })
     });   
 
-    
     containerEvent.addEventListener("click", addOrRemoveLike); 
     containerEvent.addEventListener("click", deleteMyPost); 
     containerEvent.addEventListener("click", editMyPost); 
