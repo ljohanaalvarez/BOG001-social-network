@@ -100,5 +100,16 @@
 
 }
 
+@media (max-width:500px){
 
+    .containerPostFinal{
+        width: 80vw;
+        height: 350px;
+    }
+    .containerCommentary{
+        width: 80%; 
+    height: 200px;
+    }
+
+}
 

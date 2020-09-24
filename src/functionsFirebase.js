@@ -37,11 +37,10 @@ fs.collection('users').doc().set({
 });  
 
 
-
 // Función para llamar u obtener a todos los posts y poder usarlos en printpost, con onSnapshot aseguramos 
-//que cuando haya un cambio este se refleje de una vez en la interfaz, sin necesidad de volver a regargar la página.
+//que cuando haya un cambio este se refleje de una vez en la interfaz, sin necesidad de volver a recargar la página.
         
-export const onGetPosts  = (a) => fs.collection('posts').onSnapshot(a);
+export const onGetPosts  = (callback) => fs.collection('posts').onSnapshot(callback);
 
 //Función para borrar post pasándole el id del documento del post seleccionado por el usuario
 
