@@ -6,7 +6,7 @@ import {savePost, userId, name} from '../functionsFirebase.js'
 export const createPublicationsPage = () =>{
     const viewCreatePlublications = 
         `${header}
-        <main class="mainBackgroundContainer">
+        <main class="mainBackground">
             <div>
                 <h2>Crear Publicaciones</h2>
                 <div class="bigContainer">

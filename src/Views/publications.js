@@ -1,3 +1,4 @@
+
 import {footer} from './footer.js';
 import {header} from './headerViews.js';
 import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFirebase.js'; 
@@ -9,72 +10,10 @@ import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFir
 export function userOptions(dataPost) {
     return userId !== dataPost.userId ? '':
     `<button type="submit" class = "button btnDelete" data-id = ${dataPost.id}>Borrar</button>
-      <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>`;
+    <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>`;
 }
-//console.log(dataPost);
-
-export const publicationsPage = () =>{
-    const viewPublications = 
-    `${header}       
-    <main class="mainBackgroundContainer">       
-        <h2>Publicaciones</h2>
-        <div id= "post-container">
-        </div>  
-    </main>        
-    ${footer}`;
-
-    const newDivThree = document.createElement('div');
-    newDivThree.innerHTML = viewPublications;    
-    const containerEvent = newDivThree.querySelector("#post-container");
-
-    const printPosts = async() => {
-        onGetPosts((querySnapshot => {
-            containerEvent.innerHTML =""
-            querySnapshot.forEach( doc => { 
-                const dataPost = doc.data();
-                dataPost.id = doc.id;
-                localStorage.setItem(dataPost.id,JSON.stringify(dataPost));   
-                const usersLikes= dataPost.usersLikes;
-                let iconLikesWhite='';
-                let IconLikesGreen='';
-                if(usersLikes.includes(userId)){
-                    IconLikesGreen = `<span id="like" ><i class="fas fa-thumbs-up likeUp" 
-                    data-id = ${dataPost.id}>${dataPost.counterLikes}</i> </span>`
-                }else{
-                    iconLikesWhite =`<span id="like" ><i class="fas fa-thumbs-up likeDown" 
-                    data-id = ${dataPost.id}>${dataPost.counterLikes}</i> </span>`
-                } 
-                containerEvent.innerHTML += `
-                    <div class = "containerPostFinal" data-id = ${dataPost.id}> 
-                        <div>
-                            <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
-                        </div>
-                        <div>
-                            <h3 id="userPost">${dataPost.name}</h3>
-                        </div> 
-                        <div class = "containerCommentary">
-                            <p id = "commentaryP">${dataPost.commitForm}</p>
-                        </div>
-                        <div>
-                        ${iconLikesWhite}${IconLikesGreen}
-                            <p class = "counter" data-id = ${dataPost.id} >
-                            </p>                       
-                        </div>                
-                        <div class="myBtnPost">
-                        ${userOptions(dataPost)}                        
-                        </div>
-                        <div class="containerEdit" id = "containerEdit" data-id = ${dataPost.id} >
-                        </div>
-                    </div>
-                    `  
-            })            
-        }))        
-    }
-
-    printPosts();
-
     // function addOrRemoveLike  
-    const addOrRemoveLike =  (e) =>{      
+    export const addOrRemoveLike =  (e) =>{      
         if(e.target.className === 'fas fa-thumbs-up likeDown'){
             let id = e.target.dataset.id;  
             let dataPost = JSON.parse(localStorage.getItem(id));
@@ -104,13 +43,85 @@ export const publicationsPage = () =>{
         }
     }
 
-    //Function deleteMypost
     const deleteMyPost = async(e) => {      
         if(e.target.className !== 'button btnDelete'){
             return;        
         }
         await deletePost(e.target.dataset.id);    
     }
+//console.log(dataPost);
+
+export const publicationsPage = () =>{
+    const viewPublications = 
+    `${header}       
+    <main class="mainBackgroundContainer">       
+        <h2>Publicaciones</h2>
+        <div id= "post-container">
+        </div>  
+    </main>        
+    ${footer}`;
+
+    const newDivThree = document.createElement('div');
+    newDivThree.innerHTML = viewPublications;    
+    const containerEvent = newDivThree.querySelector("#post-container");
+
+    const printPosts = async() => {
+        console.log('Estoy en print post');
+        onGetPosts((querySnapshot => {
+            console.log('Estoy en onGetPost');
+
+            containerEvent.innerHTML =""
+            querySnapshot.forEach( doc => { 
+                const dataPost = doc.data();
+                dataPost.id = doc.id;
+                localStorage.setItem(dataPost.id,JSON.stringify(dataPost));   
+                const usersLikes= dataPost.usersLikes;
+                let iconLikesWhite='';
+                let IconLikesGreen='';
+                if(usersLikes.includes(userId)){
+                    IconLikesGreen = `<span id="like" ><i class="fas fa-thumbs-up likeUp" 
+                    data-id = ${dataPost.id}>${dataPost.counterLikes}</i> </span>`
+                }else{
+                    iconLikesWhite =`<span id="like" ><i class="fas fa-thumbs-up likeDown" 
+                    data-id = ${dataPost.id}>${dataPost.counterLikes}</i> </span>`
+                } 
+                containerEvent.innerHTML += `
+                    <div class = "containerPostFinal" data-id = ${dataPost.id}> 
+                        <div class = "userContainer">
+                            <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
+                        </div>
+                        <div>
+                            <h3 id="userPost">${dataPost.name}</h3>
+                        </div> 
+                        <div class = "containerCommentary">
+                            <p id = "commentaryP">${dataPost.commitForm}</p>
+                        </div>
+                        <div>
+                        ${iconLikesWhite}${IconLikesGreen}
+                            <p class = "counter" data-id = ${dataPost.id} >
+                            </p>                       
+                        </div>                
+                        <div class="myBtnPost">
+                        ${userOptions(dataPost)}                        
+                        </div>
+                        <div class="containerEdit" id = "containerEdit" data-id = ${dataPost.id} >
+                        </div>
+                    </div>
+                    `  
+            })            
+        }))        
+    }
+
+    printPosts();
+
+
+    //Function deleteMypost
+   /* const deleteMyPost = async(e) => {      
+        if(e.target.className !== 'button btnDelete'){
+            return;        
+        }
+        await deletePost(e.target.dataset.id);    
+    }*/
 
     //Funcion editMyPost
     const editMyPost = async(e) => {      
@@ -171,4 +182,5 @@ export const publicationsPage = () =>{
      
     return newDivThree;
 }
+
 
