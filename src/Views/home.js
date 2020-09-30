@@ -19,23 +19,26 @@ export const createWellcomePage = () =>{
                 </div>
             </div>
             <div  class="containerLogIn">
-                <span>Iniciar sesión</span>
+                <span class= "spanForm">Iniciar sesión</span>
                 <div class = "containerForm">
                     <form id="formLogin" class= "formHome">
                         <label class = "label">Correo electrónico <input type="email" id="email-login" required>
                         </label>
                         <label class = "label">Contraseña<input type="password" id="password-login" minlength="6" required>
                         </label>
-                        <label class = "containerButton">
-                            <button type="submit" id="btnLogin" class = "button">Enviar</button>
-                        </label>
                         <p id = "dont-registry"></p>
+                        <div class = buttonAndLink>
+                            <label class = "containerButton">
+                                <button type="submit" id="btnLogin" class = "button">Enviar</button>
+                            </label>
+                            <div class = "link"><p><a href="" id= "linkRegistry">Registrarse</a></p></div>
+                            </div>
+                        </div>                        
                     </form>
                 </div>
-                <div class = "link"><p><a href="" id= "linkRegistry">Registrarse</a></p></div>
-            </div>
-            <div class="containerLogIn" id = "containerLogUp" >
-                <span id = "spanLogUp">Registrarse</span>
+                
+            <div class ="containerLogIn" id = "containerLogUp" >
+                <span id = "spanLogUp" class= "spanForm">Registrarse</span>
                 <div class = "containerFormLogUp">
                     <form id="formRegistry" class= "formHome">  
                         <label class = "label">Nombre completo<input type="text" id="name-registry" required>       
@@ -44,14 +47,16 @@ export const createWellcomePage = () =>{
                         </label>
                         <label class = "label">Contraseña<input type="password" id="password-registry" minlength="6" required>
                         </label>
-                        <label class = "containerButton">
-                            <button type="submit" id=btnRegistry class = "button">Enviar</button>
-                        </label>
                         <p id="alreadyRegistry"></p>
-                        
+                        <div class = buttonAndLink>
+                            <label class = "containerButton">
+                                <button type="submit" id=btnRegistry class = "button">Enviar</button>
+                            </label>
+                            <div class = "link"><p><a href="" id= "linkLogin">Iniciar sesión</a></p></div>
+                        </div>
                     </form>
+                   
                 </div>
-                <div class = "link"><p><a href="" id= "linkLogin">Iniciar sesión</a></p></div>
             </div>
         </section>
         ${footer}`;
@@ -118,7 +123,7 @@ export const createWellcomePage = () =>{
         })
         .catch (err => {
             console.log("ya registrado");
-            alreadyRegistry.innerHTML = "Ya estas registrado, ahora puedes iniciar sesión";
+            alreadyRegistry.innerHTML = "Correo ya registrado";
         })
 
         // Crear colección de usuarios y documentos correspondiente a esta collección(cada usuario)    
@@ -130,7 +135,7 @@ export const createWellcomePage = () =>{
     linkRegistry.addEventListener("click", (e) => {e.preventDefault();
         const containerLogUp = newDiv.querySelector("#containerLogUp");
         const containerLogIn = newDiv.querySelector(".containerLogIn");
-        containerLogUp.style.display= "block";
+        containerLogUp.style.display= "flex";
         containerLogIn.style.display= "none";
     });
 

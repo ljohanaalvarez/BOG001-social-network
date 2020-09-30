@@ -1,4 +1,4 @@
-const firebasemock = require ('firebase-mock');
+/*const firebasemock = require ('firebase-mock');
 const mockauth =  new firebasemock.MockAuthentication();
 const mockfirestore = new firebasemock.MockFirestore();
 global.firebase = new firebasemock.MockFirebaseSdk(
@@ -22,18 +22,37 @@ global.firebase = new firebasemock.MockFirebaseSdk(
   () => {
     return null;
   }
-);
+);*/
 
+jest.mock('../src/functionsFirebase.js', () => ({
+  upDatePosts: jest.fn(),
+  deletePost: jest.fn(),
+}));
+
+jest.mock('../src/Views/publications.js', () => ({
+  addOrRemoveLike: jest.fn(),
+}));
+
+import {upDatePosts} from '../src/functionsFirebase.js'
 import {addOrRemoveLike} from '../src/Views/publications.js';
 
-global.localStorage = {
+/*global.localStorage = {
     getItem(id){
         return JSON.stringify({
             userLikes:[],
             counterLikes: 0,
         })
     }
+}*/
+
+global.dataPost = {
+ 
+  userLikes:[],
+  counterLikes: 0,
+  
 }
+console.log(dataPost);
+console.log(typeof dataPost);
 
 describe('addOrRemoveLike', () => {
     it('debería ser una función', () => {
@@ -42,6 +61,7 @@ describe('addOrRemoveLike', () => {
     
     it('Probando el primer branch, agregar like', () => {
         const eventMock = {
+           userId : '44611565gh8',
             target: {
                 className: 'fas fa-thumbs-up likeDown',
                 classList:{
@@ -58,8 +78,10 @@ describe('addOrRemoveLike', () => {
             }
         }
         addOrRemoveLike(eventMock);
-        console.log(firebase.firestore().collection('posts').doc(id).get());
+        console.log(dataPost);
+        //console.log(firebase.firestore().collection('posts').doc(id).get());
 
     })
 
 })
+

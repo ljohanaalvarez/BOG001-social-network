@@ -1,3 +1,4 @@
+
 import {footer} from './footer.js';
 import {header} from './headerViews.js';
 import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFirebase.js'; 
@@ -9,7 +10,7 @@ import {deletePost,onGetPosts,getPosts,upDatePosts,userId} from '../functionsFir
 export function userOptions(dataPost) {
     return userId !== dataPost.userId ? '':
     `<button type="submit" class = "button btnDelete" data-id = ${dataPost.id}>Borrar</button>
-      <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>`;
+    <button type="submit" class = "button btnEdit" data-id = ${dataPost.id}>Editar</button>`;
 }
     // function addOrRemoveLike  
     export const addOrRemoveLike =  (e) =>{      
@@ -40,6 +41,13 @@ export function userOptions(dataPost) {
         }else{
             return;
         }
+    }
+
+    const deleteMyPost = async(e) => {      
+        if(e.target.className !== 'button btnDelete'){
+            return;        
+        }
+        await deletePost(e.target.dataset.id);    
     }
 //console.log(dataPost);
 
@@ -79,7 +87,7 @@ export const publicationsPage = () =>{
                 } 
                 containerEvent.innerHTML += `
                     <div class = "containerPostFinal" data-id = ${dataPost.id}> 
-                        <div>
+                        <div class = "userContainer">
                             <img src="./imagenes/usuario.png" alt="incono de usuario" class= "userIcon">
                         </div>
                         <div>
@@ -108,12 +116,12 @@ export const publicationsPage = () =>{
 
 
     //Function deleteMypost
-    const deleteMyPost = async(e) => {      
+   /* const deleteMyPost = async(e) => {      
         if(e.target.className !== 'button btnDelete'){
             return;        
         }
         await deletePost(e.target.dataset.id);    
-    }
+    }*/
 
     //Funcion editMyPost
     const editMyPost = async(e) => {      
