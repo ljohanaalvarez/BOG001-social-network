@@ -50,10 +50,10 @@ Criterios de aceptación:
 Posterior a la investigación UX y nuestras historias de usuario, construimos los prototipos de baja fidelidad para poder ralizar las primeras iteraciones con usuarios y poder ajustar el diseño de la red social.
 
 Visualizacion tamaño Móvil
-<p align="center"> <img src= "https://github.com/MarGo-20/BOG001-social-network/blob/master/src/imagenes/prototipobmovil.jpg"  height="300" width="750"> </p>
+<p align="center"> <img src= "https://github.com/MarGo-20/BOG001-social-network/blob/master/src/imagenes/prototipobmovil.jpg"  height="280" width="600"> </p>
 
 Visualización tamaño Escritorio
-<p align="center"> <img src= "https://github.com/MarGo-20/BOG001-social-network/blob/master/src/imagenes/prototipobescritorio.png" height="250 width="650"> </p>
+<p align="center"> <img src= "https://github.com/MarGo-20/BOG001-social-network/blob/master/src/imagenes/prototipobescritorio.png" height="280 width="650"> </p>
 
 Luego de estas iteraciones recibimos feedback para ajustar la vista de bienvenida, al ingresar ajustar la visual que tendria el usuario.
 
