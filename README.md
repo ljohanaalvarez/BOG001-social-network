@@ -61,7 +61,7 @@ Finalizando este proceso, desarrollamos nuestro prototipo de alta fidelidad para
 Link: https://PENDIENTE
 
 Prototipo de alta fidelidad para escritorio.
-<p align="center"> <img src= "https://github.com/MarGo-20/BOG001-social-network/blob/master/src/imagenes/prototipoAdesktop.jpg" height="250 width="750"> </p>
+<p align="center"> <img src= "https://github.com/MarGo-20/BOG001-social-network/blob/master/src/imagenes/prototipoAdesktop.jpg" height="280 width="650"> </p>
 
 Prototipo de alta fidelidad para móvil.
 <p align="center"> <img src= "" height="300 width="400"> </p
