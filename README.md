@@ -58,13 +58,16 @@ Visualización tamaño Escritorio
 Luego de estas iteraciones recibimos feedback para ajustar la vista de bienvenida, al ingresar ajustar la visual que tendria el usuario.
 
 Finalizando este proceso, desarrollamos nuestro prototipo de alta fidelidad para dar incio con la maquetación del proyecto.
-Link: https://PENDIENTE
+Link: https://www.figma.com/file/8N3HF8Mwzw9xMgACRyRtRE/Untitled?node-id=5%3A33
 
 Prototipo de alta fidelidad para escritorio.
+Vista Bienvenida
 <p align="center"> <img src= "https://github.com/MarGo-20/BOG001-social-network/blob/master/src/imagenes/prototipoAdesktop.jpg" height="280 width="650"> </p>
 
+Vista Publicaciones
 <p align="center"> <img src= "https://github.com/MarGo-20/BOG001-social-network/blob/master/src/imagenes/vista publicaciones desktop.jpg" height="280 width="650"> </p>
 
+Vista Crear Publicaciones
 <p align="center"> <img src= "https://github.com/MarGo-20/BOG001-social-network/blob/master/src/imagenes/vista crear publicación.jpg" height="280 width="650"> </p>
 
 Prototipo de alta fidelidad para móvil.
