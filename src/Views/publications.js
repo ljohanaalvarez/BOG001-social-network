@@ -49,7 +49,6 @@ export function userOptions(dataPost) {
         }
         await deletePost(e.target.dataset.id);    
     }
-//console.log(dataPost);
 
 export const publicationsPage = () =>{
     const viewPublications = 
@@ -66,10 +65,7 @@ export const publicationsPage = () =>{
     const containerEvent = newDivThree.querySelector("#post-container");
 
     const printPosts = async() => {
-        console.log('Estoy en print post');
         onGetPosts((querySnapshot => {
-            console.log('Estoy en onGetPost');
-
             containerEvent.innerHTML =""
             querySnapshot.forEach( doc => { 
                 const dataPost = doc.data();
@@ -113,15 +109,6 @@ export const publicationsPage = () =>{
     }
 
     printPosts();
-
-
-    //Function deleteMypost
-   /* const deleteMyPost = async(e) => {      
-        if(e.target.className !== 'button btnDelete'){
-            return;        
-        }
-        await deletePost(e.target.dataset.id);    
-    }*/
 
     //Funcion editMyPost
     const editMyPost = async(e) => {      

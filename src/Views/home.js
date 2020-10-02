@@ -78,7 +78,6 @@ export const createWellcomePage = () =>{
         
         auth.signInWithEmailAndPassword(emailLogin, passwordLogin)
         .then(userCredential =>  { 
-            console.log(userCredential);
         //se invoca getUsers para identificar sesión de usuario abierta, esta función getUsers
         // está en functionFirebase y ayuda a capturar los valores de las variables name y userId.
             getUsers();    
@@ -86,7 +85,6 @@ export const createWellcomePage = () =>{
         })
         //Capturar errores que se puedan presentar en el LogIn
         .catch (err => {
-            console.log(err);
             if (err.code === "auth/user-not-found"){
                 dontRegistry.innerHTML = "Usuario no registrado, por favor regístrese";
             }
@@ -116,13 +114,11 @@ export const createWellcomePage = () =>{
                 displayName: userName.value,            
               })              
               .then(() => {               
-                console.log("registrado")
                 window.location.href ='#/publicaciones';
                 getUsers();
             })                 
         })
         .catch (err => {
-            console.log("ya registrado");
             alreadyRegistry.innerHTML = "Correo ya registrado";
         })
 
