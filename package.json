@@ -33,6 +33,7 @@
     "regenerator-runtime": "^0.13.1",
     "serve": "^11.0.2",
     "stylelint": "^10.1.0",
-    "stylelint-config-recommended": "^2.2.0"
+    "stylelint-config-recommended": "^2.2.0",
+    "gh-pages": "^2.1.1"
   }
 }
