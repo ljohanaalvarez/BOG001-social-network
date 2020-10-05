@@ -44,7 +44,6 @@ export const createPublicationsPage = () =>{
 
             auth.signOut()
             .then( () => { 
-                console.log("sesión cerrada");
                 window.location.href="#/home"
             })
         });
@@ -56,7 +55,6 @@ export const createPublicationsPage = () =>{
         postForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const commitForm = postForm['commitForm'];
-            console.log(userId, name);
             await savePost(commitForm.value, userId, name, usersLikes, counterLikes);
             postForm.reset();
             commitForm.focus();
