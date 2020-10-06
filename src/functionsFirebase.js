@@ -7,13 +7,10 @@ export const getUsers = () => {
     firebase.auth().onAuthStateChanged( user=> {
         if (user) {
             // User is signed in.
-            console.log(user);
             userId = user.uid;
-            console.log(userId);
             name = user.displayName;                     
         } else { 
             // No user is signed in.
-            console.log("No se asuste, este mensaje es pq esta funcionando, pero no hay sesión de usuario abierta")
         }
     });
 }
